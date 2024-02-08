@@ -1,0 +1,912 @@
+623, Benjamin, Mendy
+630, Fabian, Delph
+883, Lee, Grant
+897, Mason Will John, Greenwood
+2281, Gary, Cahill
+2288, Daniel Noel, Drinkwater
+18826, Mark, Noble
+19308, Lewis, Grabban
+138411, Liam John, Hughes
+158696, Finley Jack, Burns
+162517, Lars, Dendoncker
+284247, Harvey, Blair
+284464, Maliq Anthony, Cadogan
+291022, Joshua, Keeley
+293162, Jadan, Raymond
+293167, Joe, Sheridan
+305732, Thomas, Wilson-Brown
+344908, Matthew, Vigor
+350590, Tarik, Gidaree
+350627, Joshua, Addae
+1093, Enock, Mwepu
+152976, Thomas Daniel, Hill
+152979, James Barry, Norris
+153429, Teden Mambuene, Mengi
+180866, Marcelo, de Araújo Pitaluga Filho
+216770, Isak, Hansen-Aarøen
+282136, Noam, Fritz Emeran
+283289, Arjan, Singh Raikhy
+284253, Dominic, Corness
+284286, Isaac, Mabaya
+284362, Björn Bryan, Hardley
+284391, Sam, Murray
+284539, Hubert, Graczyk
+284557, Zane, Monlouis
+287111, Fabian, Mrozek
+288115, James, Storer
+303010, Daniel, Gore
+312118, Joshua, Feeney
+313245, Myles Anthony, Lewis-Skelly
+328101, Tyler, Fredricson
+1131, Armstrong Echezolachukwu Inya, Oko-Flex
+2986, Édouard Osoque, Mendy
+19012, Marcus, Bettinelli
+19350, Luka, Račić
+19356, Emiliano, Marcondes Camargo Hansen
+90494, Nathan, Wallace Newman Trott
+154807, Daniel, Chesters
+162114, Dion Joseph, Rankine
+181796, Joshua Royston, Brooking
+196000, Brooklyn David Anthony, Genesini
+270357, Killian, Phillips
+284366, Luke, Chambers
+284405, Benjamin Njongoue, Elliott
+284427, Lewis, James Payne
+284442, Charles Clive, Webster
+284449, Jesurun, Rak-Sakyi
+284459, Malik, Maine Mothersille
+286764, Kaide, Gordon
+330982, Jimmy Jay, Morgan
+331563, Mason Paul James, Burstow
+95, Benoît Ntambue, Badiashile Mukinayi Baya
+259, Thiago, Emiliano da Silva
+318, Kalidou, Koulibaly
+645, Raheem Shaquille, Sterling
+1465, Pierre-Emerick Emiliano Franço, Aubameyang
+2280, César, Azpilicueta Tanco
+2290, N'Golo, Kanté
+2292, Ruben Ira, Loftus-Cheek
+19220, Mason Tony, Mount
+19545, Reece, James
+19720, Trevoh Thomas, Chalobah
+21996, Abdul Rahman, Baba
+47380, Marc, Cucurella Saseta
+64167, Gabriel Paweł, Słonina
+138822, Armando, Broja
+138935, Carney Chibueze, Chukwuemeka
+181822, Ethan James, Wady
+274550, Harvey James, Vale
+284406, Alfie, Gilchrist
+303667, Edward James, Beach
+566, Francisco, Reis Ferreira
+1003, Toni, Domgjoni
+19043, Terence, Kongolo
+25114, Markus, Schubert
+30471, Mitchell Clement, Dijks
+36865, Melle, Meulensteen
+37130, Thomas, Buitink
+38731, Daan, Reiziger
+39243, Sondre, Bjorvand Tronstad
+66240, Tomáš, Hájek
+92987, Jeroen, Houwen
+138877, Romaric, Yapi
+151754, Leighton, Owen Clarkson
+272728, Enzo, Cornelisse
+286373, Mohamed Ortaim, Sankoh
+325686, Nigel Ekow Oheneba, van Haveren
+342054, Ryan, Flamingo
+349595, Gyan, de Regt
+357047, Simon, van Duivenbooden
+364809, Miliano, Jonathans
+1463, Joseph George, Willock
+1972, Loris, Karius
+2855, Emil Henry Kristoffer, Krafth
+18873, Ryan, Fraser
+18892, Paul, Dummett
+18893, Federico, Fernández
+18894, Jamaal, Lascelles
+18896, Javier, Manquillo Gaitán
+18901, Sean David, Longstaff
+18903, Matthew Thomas, Ritchie
+18911, Nicholas David, Pope
+18941, Matthew Robert, Targett
+18961, Daniel Johnson, Burn
+19163, Jacob Kai, Murphy
+44912, Mark Joseph, Gillespie
+130419, Matthew Ben, Longstaff
+138909, Daniel David, Langley
+171058, Harrison Charles, Ashby
+181797, Bashir, Humphreys
+284500, Timothy Emeka, Iroegbunam
+2934, Michael Vincent, Keane
+2936, James Alan, Tarkowski
+2990, Idrissa Gana, Gueye
+18741, Conor David, Coady
+18745, Rúben Gonçalo Silva, Nascimento Vinagre
+18762, Thomas, Davies
+18805, Abdoulaye, Doucouré
+18854, Andros Darryl, Townsend
+18858, Asmir, Begović
+19073, Benjamin Matthew, Godfrey
+19150, Mason Anthony, Holgate
+20069, William Francis, Crellin
+20224, Andrew Michael, Lonergan
+22173, Allan Irénée, Saint-Maximin
+138849, Kyle Alex, John
+284186, Sean Paul, McAllister
+284327, Reece, Belfield Welch
+284373, Lucas, De Bolle
+328093, Ishé, Samuels-Smith
+328105, Lewis, Miley
+182, Harry Billy, Winks
+326, Allan, Marques Loureiro
+632, Claudio Amarildo, Gomes
+662, Tanguy, Ndombélé Alvaro
+1455, Alexander Chuka, Iwobi
+1649, Patrick, Cutrone
+17448, Jordan Clifford, Smith
+17715, Steven, Alzate
+18766, Dominic Nathaniel, Calvert-Lewin
+18929, Dwight James Matthew, McNeil
+18972, Anthony Patrick, Knockaert
+19197, Scott Paul, Carson
+19364, Neal, Maupay
+19831, Tariqe, Fosu
+25004, Stefan, Ortega Moreno
+46792, Pablo, Marí Villar
+138786, Ellis Reco, Simms
+152949, Dynel Brown, Kembo Simeu
+284059, Luke Elliot, Plange
+284187, Stanley, Mills
+23, Sergio, Gómez Martín
+295, Adam David, Lallana
+537, Joël Ivo, Veltman
+18960, Jason Sean, Steele
+18963, Lewis Carl, Dunk
+18970, Pascal, Groß
+18973, Solomon Benjamin, March
+19170, Morgan Elliot, Rogers
+19265, Adam Harry, Webster
+37440, Halil İbrahim, Dervişoğlu
+40911, Jakub Piotr, Moder
+69257, Walter James, Byrne Furlong
+138815, Tariq Kwame, Nii-Lante Lamptey
+144733, Benjamin Leo, Knight
+162590, Tyler Scott, Morton
+273758, Imari-Narain, Che Hines-Samuels
+282254, Odeluga Joshua, Offiah
+284230, Rico Henry, Lewis
+288699, Máximo, Perrone
+307123, Nico, O'Reilly
+190, Cédric Ricardo, Alves Soares
+263, Layvin, Kurzawa
+657, Kenny Joelle, Tete
+1469, Daniel Nii, Tackie Mensah Welbeck
+18814, Issa Laye Lucas Jean, Diop
+18962, Shane Patrick Michael, Duffy
+19023, Timothy Michael, Ream
+19027, Neeskens, Kebano
+19145, Abdul-Nasir Oluwatosin, Oluwadoyinsolami Adarabioyo
+19480, Harrison James, Reed
+26475, Deniz, Undav
+137220, Andrew, Moran
+153412, Connor, McAvoy
+153420, George Alexander, Wickens
+265820, Yasin, Abbas Ayari
+284471, Stefan Charles Earl, Parkes
+288121, Luciano Paul, D'Auria-Henry
+296121, Jack Samuel Lawrence, Hinchy
+305730, Jack Luca, Hinshelwood
+327736, Charlie James, Robinson
+104, Carlos Vinícius, Alves Morais
+899, Andreas Hugo, Hoelgebaum Pereira
+2294, Willian, Borges da Silva
+3421, Daniel, Amartey
+17736, Daniel, Lønne Iversen
+18771, Ricardo Domingos, Barbosa Pereira
+18936, Ryan Dominic, Bertrand
+18943, Jannik, Vestergaard
+18985, Alexander, Smithies
+19025, Tom, Cairney
+19182, Axel, Tuanzebe
+19454, Benjamin David, Pearson
+19760, James Michael, Justin
+129707, Tyrese Jay, Francois
+174174, Terry, Ablade
+195106, Rodrigo, Muniz Carvalho
+284470, Matthew Max, Dibley-Dias
+335116, Kristian, Šekularac
+359386, Becket Fabrice-Martial, Godo
+378868, Callum, McFarlane
+171, Kyle Leonardus, Walker-Peters
+691, Mateus Cardoso, Lemos Martins
+1902, Duje, Ćaleta-Car
+2275, Wilfredo Daniel, Caballero Lazcano
+2778, Kelechi Promise, Ịheanachọ
+18778, Harvey Lewis, Barnes
+18785, Nampalys, Mendy
+18786, Onyinye Wilfred, Ndidi
+18788, Jamie Richard, Vardy
+18935, Alex Simon, McCarthy
+19719, James, Bree
+20600, Romain Paul Jean-Michel, Perraud
+22233, Boubakary, Soumaré
+30476, Lyanco Evangelista, Silveira Neves Vojnović
+138929, Lewis, Brunt
+148099, Kiernan Frank, Dewsbury-Hall
+284396, Joseph Oliver, Wormleighton
+284487, Wanya, Marçal-Madivadua
+289624, Samuel Charles, Braybrooke
+305733, William Thomas, Alves
+1456, Ainsley Cory, Maitland-Niles
+2114, Moussa, Djenepo
+2938, James Michael Edward, Ward-Prowse
+15812, Ebere Paul, Onuachu
+18940, Jack, Stephens
+19484, Adam James, Armstrong
+19825, Joseph Oluwaseyi Temitope, Ayodele-Aribo
+20557, Ibrahima, Diallo
+25061, Armel, Bella-Kotchap
+47480, Mohammed, Salisu Abdul Karim
+158694, Valentino Francisco, Livramento
+190686, Sékou, Mara
+195993, Carlos Jonas, Alcaraz
+199837, Kamaldeen, Sulemana
+231029, Nathan Adewale Temitayo, Tella
+278085, Samuel Ikechukwu, Edozie
+284264, Juan, Larios López
+284311, Thierry, Small
+284424, Diamond, Diamond Lazane Edwards
+303462, Kamari, Doyle
+906, Tahith Jose, Chong
+1558, Joel, Robles Blázquez
+1564, Héctor Junior, Firpo Adames
+18769, Theo James, Walcott
+19116, Luke David, Ayling
+19126, Stuart Alan, Dallas
+19569, Joseph Paul, Gelhardt
+20619, Illan Stéphane, Meslier
+26238, Robin Leon, Koch
+64003, Pascal Augustus, Struijk
+130422, Dan, N'Lundulu
+153407, Nathan Jerome Chatoyer, Butler-Oyedeji
+278232, Pierre-Emmanuel, Ekwah Elimby
+278235, Kristan Richard, Moore
+278240, Harry Thomas, Christy
+282903, Tristan Danique, van den Heuvel
+284266, Lewis Wesley, Warrington
+296085, Diogo, Pinheiro Monteiro
+303460, Dominic, Ballard
+334035, Samuel, Amo-Ameyaw
+76, Marvelous, Nakamba
+1150, Tyler Shaan, Adams
+19127, Adam John, Forshaw
+19128, Jack David, Harrison
+19131, Jamie Stuart, Shackleton
+19134, Patrick James, Bamford
+37161, Luis Fernando, Sinisterra Lucumí
+47341, Marc, Roca Junqué
+90590, Georginio, Rutter
+129700, Alfie John, McCalmont
+153400, Sam, Greenwood
+153411, Cody Callum Pierre, Drameh
+273760, Amari Miquel, Miller
+278242, Jeremiah, Chukwuedo Chilokoa-Mullen
+282124, Darko Boateng, Gyabi
+284408, Sonny, Tufail Perkins
+289608, Joseph Leonard, Snowdon
+313059, Mateo, Joseph Fernández-Regatillo
+328089, Archie James Francis, Gray
+334734, James Boluwatife, Debayo
+83, Arnaut, Danjuma Adam Groeneveld
+133, Clément Nicolas Laurent, Lenglet
+159, Hugo Hadrien Dominique, Lloris
+161, Alfie, Malik Whiteman
+863, Rodrigo, Bentancur Colmán
+1566, Emerson Aparecido, Leite de Souza Junior
+18968, Yves, Bissouma
+19032, Kouassi Ryan, Sessegnon
+19393, Joshua Oghenetega Peter, Onomah
+60353, Maksim, Paskotši
+149550, Japhet Manzambi, Tanganga
+154800, Malachi Michael, Fagan-Walcott
+156428, Brandon Anthony, Austin
+161948, Liam Rory, Delap
+162607, Marqes, Muir
+215874, Thomas Christopher, Cannon
+237129, Pape Matar, Sarr
+311817, Alfie, Dorrington
+331009, Charlie, Sayers
+337929, George David, Abbott
+178, Lucas, Rodrigues Moura da Silva
+2726, Kurt Happy, Zouma
+2997, Łukasz Marek, Fabiański
+18813, Aaron William, Cresswell
+18817, Angelo, Obinze Ogbonna
+138793, Harvey David, White
+144709, Joseph, Tetteh Anang
+162148, Max, Robson
+162150, Nile Omari, Mckenzie John
+162493, Matthew George, Craig
+273757, Alfie Sean, Devine
+284060, Levi Alexander, Laing
+284414, Romaine Lee, Mundle
+284415, Yago, de Santiago Alonso
+284418, Kallum Xzeiba Tracey, Cesay
+284419, Michael, Forbes
+288116, Kaelan, Casey
+288279, Luiz Gustavo, Oliveira da Silva
+293163, Jamie, Donley
+393195, William, Lankshear
+665, Gnaly Albert Maxwel, Cornet
+1697, Pablo, Fornals Malla
+2473, Manuel, Lanzini
+18740, Jonathan, Castro Otto
+18744, Maximilian William, Kilman
+18955, Daniel William John, Ings
+19147, Craig, Dawson
+19341, Daniel Ian, Bentley
+19428, Jarrod, Bowen
+19733, Flynn, Downes
+144720, Keenan, Appiah-Forson
+144725, Kamarai, Simon-Swyer
+144741, Louie, Moulden
+152957, Lewis Paul Jimmy, Richards
+171059, Jamal Marcus, Baptiste
+284409, Divin Saku, Mubama
+284446, Freddie, Potts
+288118, Lewis, Orford
+288125, Regan, Clayton
+327730, Oliver, Scarles
+54, Diego, da Silva Costa
+284, Joseph Dave, Gomez
+286, Job Joël André, Matip
+1165, Matheus Santos, Carneiro da Cunha
+1605, Daniel, Castelo Podence
+2056, Pablo, Sarabia García
+2677, João Filipe, Iria Santos Moutinho
+7722, Saša, Kalajdžić
+18753, Adama, Traoré Diarra
+18812, Adrián, San Miguel del Castillo
+18947, Mario René Junior, Lemina
+135525, Calvin William, Ramsay
+157912, Boubacar, Traoré
+180316, Harvey, Davies
+195103, João Victor, Gomes da Silva
+195962, Francisco Jorge, Tavares Oliveira
+280687, Hugo, Bueno López
+284262, Harvey, Lawson Griffiths
+303019, Nathan John Mark, Fraser
+310187, Stefan, Bajčetić Maquieira
+150, Arthur Henrique, Ramos de Oliveira Melo
+294, Naby Laye, Keïta
+296, James Philip, Milner
+297, Alexander Mark David, Oxlade-Chamberlain
+299, Fábio Henrique, Tavares
+302, Roberto Firmino, Barbosa de Oliveira
+507, Thiago, Alcântara do Nascimento
+18777, Marc Kevin, Albrighton
+18803, Nathaniel Nyakie, Chalobah
+18835, Vicente, Guaita Panadero
+51617, Darwin Gabriel, Núñez Ribeiro
+127472, Nathaniel Harry, Phillips
+149564, Luke James, Cundle
+152977, Layton Rhys, Stewart
+153066, Fábio Leandro, Freitas Gouveia Carvalho
+162904, Rhys, Williams
+284248, Melkamu Benjamin Daniel, Frauendorf
+284549, Joseph Charles, Whitworth
+334729, Bobby Lamont, Clark
+343576, Ben, Gannon Doak
+1427, Albert-Mboyo, Sambi Lokonga
+3339, Cheick Oumar, Doucouré
+3428, Jordan Pierre, Ayew
+18806, William James, Hughes
+18843, Jeffrey, Schlupp
+18844, James Oliver Charles, Tomkins
+18847, Joel Edward Philip, Ward
+18849, James, McFarlane McArthur
+18852, Luka, Milivojević
+18853, Jaïro Jocquim, Riedewald
+18862, Nathaniel Edwin, Clyne
+19617, Michael Akpovie, Olise
+127605, Nathan Kirk-Patrick, Ferguson
+152418, Naouirou Mohamed, Ahamada
+182201, Tyrick Kwon, Mitchell
+284493, Omotayo Daniel, Adaramola
+284551, Jack Campbell, Wells-Morrison
+284554, Owen Olamidayo, Goodman
+301295, Kaden Kai, Rodney
+304320, David Ikechukwu, Ozoh
+912, Norberto, Murara Neto
+1135, Odsonne, Édouard
+3247, Dazet Wilfried, Armel Zaha
+6610, Marcos Nicolás, Senesi Barón
+18779, Hamza, Dewan Choudhury
+18815, Ryan, Marlowe Fredericks
+18869, Adam James, Smith
+19177, Kortney Paul Duncan, Hause
+19185, Keinan Vincent Joseph, Davis
+19229, Darren Edward Andrew, Randolph
+19263, Lloyd Casius, Kelly
+19769, Jack William, Stacey
+19824, Jordan Bhekithemba, Zemura
+19860, Matthew Edward, Barkell Clarke
+25927, Jean-Philippe, Mateta
+151756, William Jonathan, Dennis
+290962, Ben, Greenwood
+313636, Adler Bruno, Sá Nogueira de Nascimento
+382166, Cameron, Plain
+382170, Maxwell, Kinsey-Wellings
+638, Ian Carlo, Poveda-Ocampo
+18872, Lewis John, Cook
+18878, Felix Junior, Stanislas
+18883, Dominic Ayodele, Solanke-Mitchell
+19088, Dean Bradley, Henderson
+19245, Marcus Joseph, Tavernier
+19281, Antoine Serlom, Semenyo
+19482, Joseph Matthew, Rothwell
+20093, James Clayton, Hill
+31057, Hamed Junior, Traorè
+84081, Giulian, Biancone
+192349, George William, Shelvey
+196855, Jaidon, Anthony
+284797, Dango Aboubacar Faissal, Ouattara
+334725, Dominic, Sadi
+347066, Euan, Pollock
+382160, Daniel, Adu-Adjei
+382167, Jack, Wadham
+382930, Ferdinand, Okoh
+390769, Michael, Dacosta Gonzales
+163, Sèrge Alain Stéphane, Aurier
+371, Felipe Augusto, de Almeida Monteiro
+900, Jesse Ellis, Lingard
+1746, Joseph Adrian, Worrall
+2991, Cheikhou, Kouyaté
+9926, Gustavo Henrique, Furtado Scarpa
+10122, Renan Augusto, Lodi dos Santos
+17365, Harry Stefano, Toffolo
+18739, Willy-Arnaud, Zobo Boly
+18863, Steve Anthony, Cook
+18904, Jonjo, Shelvey
+18996, Harry Nicholas, Arter
+19299, Jack Raymond, Colback
+19305, Ryan James, Yates
+19610, Omar, Tyrell Crawford Richards
+25916, Moussa, Niakhaté
+40401, Carlos Miguel, Ribeiro Dias
+44811, Scott, Fraser McKenna
+275170, Danilo, dos Santos de Oliveira
+329357, Zach, Abbott
+80, Emmanuel Bonaventure, Dennis
+1370, André Morgan, Rami Ayew
+8598, Taiwo Micheal, Awoniyi
+15745, Mads, Roerslev Rasmussen
+17772, Charlie, Goode
+18884, Samuel William, Surridge
+18885, Karl, Darlow
+18917, Ben, Mee
+18931, Christopher Grant, Wood
+19124, Pontus, Jansson
+19346, Rico, Henry
+19842, Lyle James Alfred, Taylor
+129712, Alexander Cole, Mighten
+180289, Christian, Saydee
+191337, Tristan, Crama
+278041, Matthew Aidan, Cox
+284316, William Charles, Storm Fewster
+327602, Detlef Esapa, Osong
+327603, Alex, Gibson-Hammond
+328808, Malcolm, Perewari Ebiowei
+2699, Sayed Saman, Ghoddos
+15799, Ogochukwu  Frank, Onyeka
+19174, Jed John, Steer
+19298, Matthew Stuart, Cash
+19362, Pelenda Joshua Tunga, Dasilva
+20110, Shandon, Baptiste
+20589, Bryan Tetsadong Marceau, Mbeumo
+21090, Diego Carlos, Santos Silva
+25073, Vitaly, Janelt
+106725, Keane William, Lewis-Potter
+148270, Oliwier, Zych
+153261, Nathan, Young-Coombes
+178077, Kevin, Schade
+215873, Alexander George Henry, Gilbert
+263538, Yehor, Yarmolyuk
+278128, Joshua Darius, Kamani Wilson-Esbrand
+284390, James, Wright
+284474, Michael Oluwakorede, Olakigbe
+311520, Marcus Vinícius, Oliveira Alencar
+382925, Ryan, Trevitt
+147, Philippe, Coutinho Correia
+671, Bertrand Isidore, Traoré
+894, Ashley Simon, Young
+2724, Lucas, Digne
+19016, Calum, Chambers
+19071, Emiliano, Buendía Stati
+19354, Ezri, Konsa Ngoyo
+19366, Oliver George Arthur, Watkins
+47522, Douglas Luiz, Soares de Paulo
+47547, Alexandre, Moreno Lopera
+134428, Benjamin Joshua, Chrisene
+158698, Jarell Amorin, Amorin Quansah
+278123, Sebastian, Revan
+283290, Kasey, McAteer
+284323, Charlie William Henry, Savage
+284423, Ryan James, Finnigan
+284523, Sil, Laurentius Swinkels
+284556, Tommi Dylan, O'Reilly
+308843, Travis, Patterson
+312260, Kadan, Young
+49, Thomas, Teye Partey
+641, Oleksandr, Zinchenko
+946, Melingo Kevin, Mbabu
+1440, Robert Samuel, Holding
+1452, Mohamed Naser, Elsayed Elneny
+2597, Takehiro, Tomiyasu
+19959, Benjamin William, White
+22090, William Alain André Gabriel, Saliba
+22224, Gabriel, dos Santos Magalhães
+68127, Kelland John William James, Watts
+138843, James Andrew, Hillson
+158432, Chem, Campbell
+163054, Shola, Maxwell Shoretire
+191971, Jay, Stansfield
+266203, John-Kymani Linton Michael, Gordon
+278129, Luke, Mbete-Tabu
+284439, Lino, da Cruz Sousa
+284457, Lamare Trenton, Chansey Bogarde
+284540, Mauro, Gomes Bandeira
+309505, Reuell, Walters
+643, Gabriel Fernando, de Jesus
+727, Reiss Luke, Nelson
+882, David, de Gea Quintana
+888, Phil Anthony, Jones
+1468, Edward, Keddar Nketiah
+2930, Jack, Butland
+2931, Thomas David, Heaton
+19195, Anwar, El Ghazi
+20319, Nathan James, Bishop
+40434, César Joel, Valencia Castillo
+47302, Diego Javier, Llorente Ríos
+127769, Gabriel Teodoro, Martinelli Silva
+167658, Matthew Gerrard, Smith
+278075, Cătălin Ionuț, Cîrjan
+284062, Khayon, Edwards
+284361, Radek, Vítek
+284571, Charles Kwame, Sagoe Junior
+309501, Amario, Cozier-Duberry
+309507, Bradley, Ibrahim
+313236, Ethan Chidiebere, Nwaneri
+18, Jadon Malik, Sancho
+547, Donny, van de Beek
+742, Raphaël Xavier, Varane
+905, Frederico, Rodrigues de Paula Santos
+908, Anthony Jordan, Martial
+2298, Callum James, Hudson-Odoi
+2467, Lisandro, Martínez
+9971, Antony Matheus, dos Santos
+18846, Aaron, Wan-Bissaka
+19345, Mads, Bech Sørensen
+56296, Nikolai, Baden Frederiksen
+138806, Brandon Paul Brian, Williams
+138937, Filip, Marschall
+153434, William Thomas, Fish
+157997, Amad, Diallo Traoré
+231062, Arthur Chukwuezugo, Okonkwo
+284295, Zidane Aamar, Iqbal
+284322, Kobbie, Mainoo
+284363, Rhys Joseph, Wright Bennett
+288106, Marc, Jurado Gómez
+158, Paulo Dino, Gazzaniga Farias
+172, Bamidele Jermaine, Alli
+739, Sergio, Reguilón Rodríguez
+925, Gonçalo Manuel, Ganchinho Guedes
+1439, Héctor, Bellerín Moruno
+1853, Bruno André, Cavaco Jordão
+2278, Marcos, Alonso Mendoza
+2852, Hans Carl Ludwig, Augustinsson
+3240, Jean-Philippe, Gbamin
+18751, Ivan Ricardo, Neves Abreu Cavaleiro
+18752, Hélder Wander, Sousa de Azevedo e Costa
+18902, Robert Kenedy, Nunes do Nascimento
+18906, Ayoze, Pérez Gutiérrez
+18948, Nathan Daniel Jerome, Redmond
+18949, Oriol, Romeu Vidal
+18978, Florin, Andone
+19309, Joseph, Lolley
+19352, Sergi, Canós Tenes
+174918, Loïc, Badé
+382163, Owen Lucas, Bevan
+279, Loïc Junior, Mbe Soh
+1914, Morgan Stéphane, Sanson
+2287, Ross, Barkley
+2928, Christian, Benteke Liolo
+3008, Mateusz Andrzej, Klich
+3246, Nicolas, Pépé
+13489, Jhon Jader, Durán Palacio
+18765, André Filipe, Tavares Gomes
+18770, Eldin, Jakupović
+19015, Joseph Edward, Bryan
+19235, Diop Tehuti, Djed-Hotep Spence
+19307, Leonardo, Bonatini Lohner Maia
+19964, Ben Siriki, Dembélé
+20503, Lewis John, O'Brien
+21636, Frédéric, Guilbert
+22166, Malang Mamadou William Georges, Sarr
+22265, Nuno Miguel, da Costa Jóia
+61178, Connor Patrick, Ronan
+156490, Niels Patrick, Nkounkou
+284492, Lewis Kieran, Hall
+175, Eric Jeremy Edgar, Dier
+1330, Mislav, Oršić
+1946, Leandro, Trossard
+2284, Emerson, Palmieri dos Santos
+2825, Aleksandar, Mitrović
+2925, Dennis Pierre Jacques Albert, Praet
+2933, Benjamin James, Chilwell
+18758, Séamus, Coleman
+18776, Çağlar, Söyüncü
+18932, Fraser Gerard, Forster
+18959, Robert, Lynch Sánchez
+19524, Ché Zach Everton Fred, Adams
+19974, Ivan Benjamin Elijah, Toney
+21138, Rayan, Aït-Nouri
+30407, Christian, Thers Nørgaard
+30544, Gianluca, Scamacca
+41621, Matheus Luiz, Nunes
+47519, Pedro Antonio, Porro Sauceda
+144723, Krisztián, Hegyi
+162714, Amadou Ba Zeund Georges, Mvom Onana
+17, Christian Mate, Pulišić
+415, Weston James Earl, McKennie
+1578, Giovani, Lo Celso
+2461, José Salomón, Rondón Giménez
+2887, Raúl Alonso, Jiménez Rodríguez
+5996, Enzo Jeremías, Fernández
+6009, Julián, Álvarez
+6716, Alexis, Mac Allister
+19549, Antonee, Robinson
+19599, Damián Emiliano, Martínez Romero
+20850, Carlens Jean, Fedlaire Ruby Arcus
+30776, Cristian Gabriel, Romero
+50739, Brenden Russell, Aaronson
+50816, Richmond Mamah, Laryea
+50999, Matthew Charles, Turner
+126949, Christopher Jeffrey, Richards
+138835, Folarin Jerry, Balogun
+167663, Thomas Peter Wayne, McGill
+284324, Alejandro, Garnacho Ferreyra
+311334, Facundo Valentín, Buonanotte
+168, Davinson, Sánchez Mina
+186, Heung-Min, Son
+261, Jan Thilo, Kehrer
+633, İlkay, Gündoğan
+978, Kai Lukas, Havertz
+1166, Timo, Werner
+1438, Bernd, Leno
+2484, Yerry Fernando, Mina González
+2489, Luis Fernando, Díaz Marulanda
+2490, Jefferson Andrés, Lerma Solís
+20079, Harry James, Souttar
+24888, Hee-Chan, Hwang
+46731, Pervis Josué, Estupiñán Tenorio
+51572, Matías Nicolás, Viña Susperreguy
+70078, Facundo, Pellistri Rebollo
+106835, Kaoru, Mitoma
+116117, Moisés Isaac, Caicedo Corozo
+195717, Yerson, Mosquera Valdelamar
+202086, Jeremy Leonel, Sarmiento Morante
+288109, Alexander Sean Pablo, Robertson
+280, Alisson Ramsés, Becker
+378, Alex, Nicolao Telles
+548, Hakim, Ziyech
+617, Ederson, Santana de Moraes
+723, Joelinton Cassio, Apolinário de Lira
+747, Carlos Henrique, Casimiro
+983, Leon Patrick, Bailey Butler
+1098, Patson, Daka
+1646, Lucas, Tolentino Coelho de Lima
+2413, Richarlison, de Andrade
+2507, Miguel Ángel, Almirón Rejala
+10135, Bruno, Guimarães Rodriguez Moura
+18819, Michail Gregory, Antonio
+19004, Bobby Armani, De Cordova-Reid
+19789, Ethan Rupert, Pinnock
+21694, Nayef, Aguerd
+70747, Julio César, Enciso Espínola
+70767, Braian Óscar, Ojeda Rodríguez
+284237, Dexter, Joeng Woo Lembikisa
+284428, Omari Elijah, Giraud-Hutchinson
+306, Mohamed, Salah Hamed Mahrous Ghaly
+635, Riyad Karim, Mahrez
+731, Keylor Antonio, Navas Gamboa
+2061, Bryan, Gil Salvatierra
+18781, Demarai Ramelle, Gray
+18820, Conor James, Coventry
+18942, Yan, Valery
+19361, Mohamed Saïd, Benrahma
+19866, Jamal Akua, Lowe
+20649, Yoane, Wissa
+39105, Kristoffer-August, Sundquist Klaesson
+138908, Elliot, Anderson
+180560, Hannibal, Mejbri
+204033, Joseph Shaun, Hodge
+216809, Cameron Paul Jacques, Peupion
+278133, Oscar, Bobb
+282125, Roméo, Lavia
+291476, David Datro, Fofana
+297187, Leo, Fuhr Hjelde
+349987, Garang, Mawien Kuol
+180, Oliver William, Skipp
+293, Curtis Julian, Jones
+895, James David, Garner
+18746, Morgan Anthony, Gibbs-White
+18823, Benjamin Anthony, Johnson
+19035, Harvey Daniel James, Elliott
+19192, Jacob Matthew, Ramsey
+36922, Sepp, van den Berg
+37276, Kjell, Scherpen
+37724, Crysencio Jilbert Sylverio Cir, Summerville
+38695, Jan Paul, van Hecke
+64304, Kacper Szymon, Kozłowski
+106086, Kofi, Balmer
+131278, Charlie Steven, Allen
+148284, Bartosz, Białek
+152953, Levi Lemar, Samuels Colwill
+152955, Lucas Carl Edvard, Bergström
+152969, Luke Jonathan, Thomas
+152982, Cole Jermaine, Palmer
+272730, Million, Manhoef
+289, Andrew Henry, Robertson
+903, Scott Francis, McTominay
+1117, Kieran, Tierney
+1125, Ryan, Christie
+1161, Emile, Smith Rowe
+1864, Pedro, Lomba Neto
+2273, Kepa, Arrizabalaga Revuelta
+18945, Stuart, Armstrong
+19118, Liam David Ian, Cooper
+19191, John, McGinn
+19465, David, Raya Martin
+41577, Nuno Albertino, Varela Tavares
+41725, Fábio Daniel, Ferreira Vieira
+44871, Aaron, Buchanan Hickey
+130423, Billy Clifford, Gilmour
+136723, Chukwunonso Tristan, Madueke
+137302, Cameron Desmond, Archer
+138417, Nathan Kenneth, Patterson
+138787, Anthony Michael, Gordon
+280334, Gabriel, Vidović
+44, Rodrigo, Hernández Cascante
+253, Alphonse Francis, Aréola
+622, Aymeric Jean Louis Gérard Alph, Laporte
+935, Rodrigo, Moreno Machado
+1100, Erling, Braut Haaland
+1119, Kristoffer, Vassbakk Ajer
+1145, Ibrahima, Konaté
+1600, Konstantinos, Tsimikas
+1904, Boubacar Bernard, Kamara
+18861, Nathan Benjamin, Aké
+18946, Mohamed Amine, Elyounoussi
+22094, Wesley Tidjan, Fofana
+37127, Martin, Ødegaard
+37145, Tyrell Johannes Chicco, Malacia
+38734, Sven, Botman
+138804, Matěj, Kovář
+158710, Victor, Bernth Kristiansen
+276263, Finley, Stevens
+280672, Edward James, Turns
+325967, Oliver Jack, Hammond
+169, Kieran John, Trippier
+247, Cody Mathès, Gakpo
+281, Caoimhín Odhrán, Kelleher
+283, Trent John, Alexander-Arnold
+290, Virgil, van Dijk
+626, John, Stones
+627, Kyle Andrew, Walker
+891, Luke Paul Hoare, Shaw
+2932, Jordan Lee, Pickford
+2935, Jacob Harry, Maguire
+18742, Matthew James, Doherty
+18860, Mark, Travers
+19143, Samuel Luke, Johnstone
+19179, Tyrone Deon, Mings
+19495, Nathan Michael, Collins
+20355, Aaron Christopher, Ramsdale
+25416, Wout, Weghorst
+67971, Addji Keaninkin Marc-Israel, Guéhi
+105971, Gavin Okeroghene, Bazunu
+129643, Evan Joe, Ferguson
+184, Harry Edward, Kane
+292, Jordan Brian, Henderson
+631, Philip Walter, Foden
+909, Marcus, Rashford
+1460, Bukayo Ayoyinka, Saka
+2165, Vitalii, Mykolenko
+2279, Ethan Kwame Colm Raymond, Ampadu
+2289, Jorge Luiz, Frello Filho
+2937, Declan, Rice
+2939, Callum Eddie Graham, Wilson
+18146, Daniel, Ward
+18784, James Daniel, Maddison
+18836, Wayne Robert, Hennessey
+19130, Kalvin Mark, Phillips
+19187, Jack Peter, Grealish
+19586, Eberechi Oluchi, Eze
+63577, Mykhailo, Mudryk
+67972, Conor John, Gallagher
+161671, Illia, Zabarnyi
+162128, Degnand Wilfried, Gnonto
+164, Benjamin Thomas, Davies
+207, Ivan, Perišić
+842, Nikola, Vlašić
+1159, Marcel, Sabitzer
+1231, Vladimír, Coufal
+1243, Tomáš, Souček
+1835, Thomas, Strakosha
+2048, Maximilian, Wöber
+2291, Mateo, Kovačić
+2999, Jan Kacper, Bednarek
+18866, Christopher James, Mepham
+18870, David Robert, Brooks
+19221, Harry, Wilson
+19329, Daniel Owen, James
+19804, Kieffer Roberto Francisco, Moore
+61431, Jakub Piotr, Kiwior
+126791, Nathan Paul, Broadhead
+129711, Brennan Price, Johnson
+138780, Neco Shay, Williams
+284475, Luke Bernard, Harris
+174, Christian, Dannemann Eriksen
+533, Rasmus, Nissen Kristensen
+629, Kevin, De Bruyne
+766, Robin Patrick, Olsen
+889, Victor Jörgen, Nilsson Lindelöf
+2729, Joachim Christian, Andersen
+2731, Mathias, Jattah-Njie Jørgensen
+2734, Philip, Anyanwu Billing
+2823, Saša, Lukić
+2864, Alexander, Isak
+2920, Timothy, Castagne
+2922, Leander, Dendoncker
+2926, Youri Marion, Tielemans
+2927, Michy, Batshuayi-Atunga
+8694, Wout Felix Lina, Faes
+19173, Matija, Šarkić
+24882, Orel Johnson, Mangala
+30435, Dejan, Kulusevski
+153430, Anthony David, Junior Elanga
+169295, Karl Jakob, Hein
+5, Manuel Obafemi, Akanji
+130, Nélson, Cabral Semedo
+567, Rúben, dos Santos Gato Alves Dias
+697, Manor, Solomon
+855, João Pedro, Cavaco Cancelo
+886, José Diogo, Dalot Teixeira
+1464, Granit, Xhaka
+1590, José Pedro, Malheiro de Sá
+2735, Pierre-Emile, Kordt Højbjerg
+2806, Fabian Lukas, Schär
+2807, Remo Marco, Freuler
+2810, Denis Lemi, Zakaria Lako Lado
+15908, Mikkel, Krogh Damsgaard
+18772, Jonathan Grant, Evans
+19076, Jamal Piaras, Lewis
+47438, Mathias, Jensen
+169291, Viljami Kari Veikko, Sinisalo
+284267, Isaac Jude, Price
+284356, Shea Emmanuel, Charles
+339138, Dale, Taylor
+583, João, Félix Sequeira
+636, Bernardo, Mota Veiga de Carvalho e Silva
+874, Cristiano Ronaldo, dos Santos Aveiro
+1485, Bruno Miguel, Borges Fernandes
+2676, Rúben Diogo, da Silva Neves
+2678, Diogo José, Teixeira da Silva
+2784, Rúnar Alex, Rúnarsson
+18886, Martin, Dúbravka
+19657, Marek, Rodák
+37122, Matúš, Bero
+41104, João Maria, Lobo Alves Palhinha Gonçalves
+41606, Tote António, Gomes

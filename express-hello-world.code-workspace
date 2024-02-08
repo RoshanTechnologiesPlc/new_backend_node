@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../restart/flutterbackend/controller"
+		},
+		{
+			"path": "../restart/flutterbackend/dataMapper"
+		},
+		{
+			"path": "../restart/flutterbackend/fetch"
+		},
+		{
+			"path": "../restart/flutterbackend/models"
+		},
+		{
+			"path": "../restart/flutterbackend/request"
+		},
+		{
+			"path": "../restart/flutterbackend/routes"
+		},
+		{
+			"path": "../restart/flutterbackend/schemas"
+		}
+	],
+	"settings": {}
+}

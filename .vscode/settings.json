@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/6f8bde6e-23ab-488b-8856-8de20b256f54/resourceGroups/testanodebackend_group/providers/Microsoft.Web/sites/testanodebackend",
+    "appService.deploySubpath": "."
+}
