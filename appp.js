@@ -117,22 +117,30 @@ app.get("/newsbylang/:lang", verifyRefereshToken ,  async (req, res) => {
     }
 })
 
-async function getTrendingNews(lang, pageNumber,excludeIds = []) {
+async function getTrendingNews(lang, pageNumber, excludeIds = [], lastViewCount = null) {
   try {
     // Calculate the skip value (pageNumber - 1) to adjust for pages since the first page should have no skip
     const skipValue = Math.max(0, pageNumber - 1);
 
     // Calculate the date 3 days ago from now
- const threeDaysAgo = new Date();
+    const threeDaysAgo = new Date();
     threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+
+    // Build the query object with necessary filters
+    let query = {
+      pending: false,
+      publishedDate: { $gte: threeDaysAgo }, // Filter for news published within the last 3 days
+      _id: { $nin: excludeIds }
+    };
+
+    // If lastViewCount is provided, adjust the query to fetch the next item with a smaller view count
+    if (lastViewCount !== null) {
+      query.viewCount = { $lt: lastViewCount };
+    }
 
     // Fetch the trending news item within the last 3 days
     const trendingNews = await news
-      .find({
-        pending: false,
-        publishedDate: { $gte:  threeDaysAgo }, // Filter for news published within the last 3 days
-        _id: { $nin: excludeIds } 
-      })
+      .find(query)
       .sort({ viewCount: -1 }) // Sort by view count in descending order
       .skip(skipValue) // Skip to the nth news item
       .limit(1) // Limit to only one result
@@ -148,6 +156,7 @@ async function getTrendingNews(lang, pageNumber,excludeIds = []) {
     throw e; // Re-throw the error or handle it as per your application's error handling policy
   }
 }
+
 
 app.get("/news",  verifyRefereshToken  , async (req, res) => {
  
