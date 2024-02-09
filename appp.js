@@ -123,14 +123,14 @@ async function getTrendingNews(lang, pageNumber) {
     const skipValue = Math.max(0, pageNumber - 1);
 
     // Calculate the date 3 days ago from now
-    const oneDayAgo = new Date();
-    oneDayAgo.setDate(oneDayAgo.getDate() - 1);
+ const threeDaysAgo = new Date();
+    threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
 
     // Fetch the trending news item within the last 3 days
     const trendingNews = await news
       .find({
         pending: false,
-        publishedDate: { $gte:  oneDayAgo } // Filter for news published within the last 3 days
+        publishedDate: { $gte:  threeDaysAgo } // Filter for news published within the last 3 days
       })
       .sort({ viewCount: -1 }) // Sort by view count in descending order
       .skip(skipValue) // Skip to the nth news item
