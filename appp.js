@@ -117,7 +117,7 @@ app.get("/newsbylang/:lang", verifyRefereshToken ,  async (req, res) => {
     }
 })
 
-async function getTrendingNews(lang, pageNumber) {
+async function getTrendingNews(lang, pageNumber,excludeIds = []) {
   try {
     // Calculate the skip value (pageNumber - 1) to adjust for pages since the first page should have no skip
     const skipValue = Math.max(0, pageNumber - 1);
@@ -131,6 +131,7 @@ async function getTrendingNews(lang, pageNumber) {
       .find({
         pending: false,
         publishedDate: { $gte:  threeDaysAgo } // Filter for news published within the last 3 days
+        _id: { $nin: excludeIds } 
       })
       .sort({ viewCount: -1 }) // Sort by view count in descending order
       .skip(skipValue) // Skip to the nth news item
