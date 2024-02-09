@@ -130,7 +130,7 @@ async function getTrendingNews(lang, pageNumber,excludeIds = []) {
     const trendingNews = await news
       .find({
         pending: false,
-        publishedDate: { $gte:  threeDaysAgo } // Filter for news published within the last 3 days
+        publishedDate: { $gte:  threeDaysAgo }, // Filter for news published within the last 3 days
         _id: { $nin: excludeIds } 
       })
       .sort({ viewCount: -1 }) // Sort by view count in descending order
