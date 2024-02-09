@@ -119,16 +119,22 @@ app.get("/newsbylang/:lang", verifyRefereshToken ,  async (req, res) => {
 
 async function getTrendingNews(lang, pageNumber) {
   try {
-    // Calculate the skip value (pageNumber - 1) because the first page should have no skip
-    const skipValue = Math.max(0, pageNumber );
+    // Calculate the skip value (pageNumber - 1) to adjust for pages since the first page should have no skip
+    const skipValue = Math.max(0, pageNumber - 1);
 
-    // Fetch the trending news item
+    // Calculate the date 3 days ago from now
+    const oneDayAgo = new Date();
+    oneDayAgo.setDate(oneDayAgo.getDate() - 1);
+
+    // Fetch the trending news item within the last 3 days
     const trendingNews = await news
-      .find({  pending : false })
+      .find({
+        pending: false,
+        publishedDate: { $gte:  oneDayAgo } // Filter for news published within the last 3 days
+      })
       .sort({ viewCount: -1 }) // Sort by view count in descending order
       .skip(skipValue) // Skip to the nth news item
       .limit(1) // Limit to only one result
-       // Convert to array (depending on your DB driver)
 
     // Check if we got a result and return it
     if (trendingNews.length > 0) {
