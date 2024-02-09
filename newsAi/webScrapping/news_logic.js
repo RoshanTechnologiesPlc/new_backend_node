@@ -112,11 +112,11 @@ async function fetchAndStoreSummary() {
       // const summarizedDescription_tg =await translateText(paraphrasedDescription,ti);
       // const summarizedDescription_so =await translateText(paraphrasedDescription,so);
      
-      const paraphrasedCaption = await paraphraseText(rssItem.figCaption);
-      const summarisedCaption_am = await translateText(paraphrasedCaption, am);
-      const summarisedCaption_or = await translateText(paraphrasedCaption, or); 
-      const summarisedCaption_tg = await translateText(paraphrasedCaption, ti);
-      const summarisedCaption_so = await translateText(paraphrasedCaption, so);
+     // const paraphrasedCaption = await paraphraseText(rssItem.figCaption);
+      const summarisedCaption_am = await translateText(rssItem.figCaption, am);
+      const summarisedCaption_or = await translateText(rssItem.figCaption, or); 
+      const summarisedCaption_tg = await translateText(rssItem.figCaption, ti);
+      const summarisedCaption_so = await translateText(rssItem.figCaption, so);
       
       const summarized = await fetchSummary(rssItem.newsLink);
       const summarized_am = await translateText(summarized,am);
