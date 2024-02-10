@@ -122,21 +122,22 @@ async function getTrendingNews(lang, pageNumber, excludeIds = [], lastViewCount 
     // Calculate the skip value (pageNumber - 1) to adjust for pages since the first page should have no skip
     const skipValue = Math.max(0, pageNumber - 1);
 
-    // Calculate the date 3 days ago from now
-    const threeDaysAgo = new Date();
-    threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+    // Calculate the start of the current day
+const startOfToday = new Date();
+startOfToday.setHours(0, 0, 0, 0); // Set to midnight of the current day
 
-    // Build the query object with necessary filters
-    let query = {
-      pending: false,
-      publishedDate: { $gte: threeDaysAgo }, // Filter for news published within the last 3 days
-      _id: { $nin: excludeIds }
-    };
+// Update the query object's publishedDate filter
+let query = {
+  pending: false,
+  publishedDate: { $gte: startOfToday }, // Filter for news published from the start of today
+  _id: { $nin: excludeIds }
+};
 
-    // If lastViewCount is provided, adjust the query to fetch the next item with a smaller view count
-    if (lastViewCount !== null) {
-      query.viewCount = { $lt: lastViewCount };
-    }
+// If lastViewCount is provided, adjust the query accordingly
+if (lastViewCount !== null) {
+  query.viewCount = { $lt: lastViewCount };
+}
+
 
     // Fetch the trending news item within the last 3 days
     const trendingNews = await news
