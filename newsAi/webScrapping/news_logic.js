@@ -252,6 +252,7 @@ async function fetchSummary(url) {
       SM_API_KEY: smmryAPIKey,
       SM_URL: url,
       SM_LENGTH: 5,
+      SM_WITH_BREAK: true
     };
 
     const response = await axios.get(`${API_URL}?${qs.stringify(fullOptions)}`);
