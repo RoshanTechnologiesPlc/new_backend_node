@@ -3,7 +3,7 @@ const axios = require('axios');
 const xml2js = require('xml2js');
 require("dotenv").config();
 const { Translate } = require('@google-cloud/translate').v2;
-const translate = new Translate({ key: 'AIzaSyA1YZMNQlYQAfIhqBlWY99NmJzXN2SKZug' });
+const translate = new Translate({ key: 'AIzaSyCau1WDN3ZsJglCClLQDLHM7gcNPyY4ZNE' });
 const TestaNews = require('../../schemas/news_model')
 const qs = require('qs');
 const OPENAI_API_ENDPOINT = "https://api.openai.com/v1/chat/completions";
