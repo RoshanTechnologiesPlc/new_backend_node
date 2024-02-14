@@ -30,7 +30,7 @@ async function fetchTheLineup(fixtureId) {
     const config = {
       method: 'GET',
      
-      url : "https://api-football-v1.p.rapidapi.com/v3/fixtures/lineups" , 
+      url : "https://v3.football.api-sports.io/fixtures/lineups" , 
       params: { fixture: `${fixtureId}` },
       headers: {
           
