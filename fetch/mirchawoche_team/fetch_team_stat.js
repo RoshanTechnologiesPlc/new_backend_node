@@ -16,7 +16,7 @@ async function fetchTeamStatistics(season, teamId, leagueId) {
         params: { league: leagueId, season: season, team: teamId },
         headers: {
 
-            'x-rapidapi-key': 'e67d254b5f3aea256bdce5a4a1b43224',
+            'x-rapidapi-key': '1d8b97a2a806716a1f50c53d5ca840fd',
             "x-rapidapi-host": "v3.football.api-sports.io"
         }
     };
