@@ -8,7 +8,7 @@ async function fetchStanding(teamId){
         params: { league: 39 , season : "2023"  , team : teamId},
         headers: {
           
-          'x-rapidapi-key': '516ffc4e5amshc6b0d3476bfcca6p1ea884jsnc1ddf49f673b'
+          'x-rapidapi-key': '1d8b97a2a806716a1f50c53d5ca840fd'
         }
       };
  
