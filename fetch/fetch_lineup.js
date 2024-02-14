@@ -25,7 +25,7 @@ async function fetchLineupForMatch(fixtureId , io , homeTeamId , awayTeamId) {
   const config = {
     method: 'GET',
 
-    url: `${process.env.API_FOOTBALL_URL}/fixtures/lineups`,
+    url: `${process.env.API_FOOTBALL_URL}/fixtures/lineups` ,
     params: { fixture: `${fixtureId}` },
     headers: {
 
