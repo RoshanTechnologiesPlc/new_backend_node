@@ -25,12 +25,12 @@ async function fetchLineupForMatch(fixtureId , io , homeTeamId , awayTeamId) {
   const config = {
     method: 'GET',
 
-    url: `${process.env.API_FOOTBALL_URL}/fixtures/lineups` ,
+    url: 'https://v3.football.api-sports.io/fixtures/lineups',
     params: { fixture: `${fixtureId}` },
     headers: {
 
-      'x-rapidapi-key': process.env.API_FOOTBALL_kEY,
       "x-rapidapi-host": "v3.football.api-sports.io"
+      'x-rapidapi-key': process.env.API_FOOTBALL_kEY,
     }
   }; 
 
