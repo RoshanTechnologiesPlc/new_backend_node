@@ -29,7 +29,7 @@ async function fetchLineupForMatch(fixtureId , io , homeTeamId , awayTeamId) {
     params: { fixture: `${fixtureId}` },
     headers: {
 
-      "x-rapidapi-host": "v3.football.api-sports.io"
+      "x-rapidapi-host": "v3.football.api-sports.io",
       'x-rapidapi-key': process.env.API_FOOTBALL_kEY,
     }
   }; 
