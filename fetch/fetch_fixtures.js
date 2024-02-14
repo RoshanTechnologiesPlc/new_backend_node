@@ -8,7 +8,7 @@ async function fetchFixture(leagueId) {
     params: { league: `${leagueId}`, season: "2022" },
     headers: {
         
-      'x-rapidapi-key': '373145c158a54c630c57f0af6bc798f4'
+      'x-rapidapi-key': '1d8b97a2a806716a1f50c53d5ca840fd'
     }
   };
 
