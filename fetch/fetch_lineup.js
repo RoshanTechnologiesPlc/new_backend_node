@@ -9,19 +9,8 @@ const userSockets = require("../socket/userSocket")
 const User = require("../schemas/user_model");
 const TeamData = require("../schemas/team_data")
 const matchSchema = require('../schemas/match_schema')
-const url = 'mongodb+srv://abubekersiraj:Mongodbpassword1234@test.zezynu2.mongodb.net/?retryWrites=true&w=majority';
 
 
-
-mongoose.connect(url)
-  .then(() => {
-    console.log('Connected to the MongoDB database.');
-    fetchTodaysLineup();
-   
-  })
-  .catch(err => {
-    console.error(`Error connecting to the database: ${err}`);
-  });
 require('dotenv').config()
 async function fetchTodaysLineup() {
   const fixtures = await getTodaysMatches()
