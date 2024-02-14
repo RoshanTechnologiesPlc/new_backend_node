@@ -33,10 +33,11 @@ async function fetchTopYellowCardScorers(leagueId  , season){
 async function fetchTopRedCardScorers(leagueId  , season){
         const config = {
             method: 'GET',
-            url : "https://api-football-v1.p.rapidapi.com/v3/players/topredcards" , 
+            url : `${process.env.API_FOOTBALL_URL}/players/topredcards` , 
             params: { league: leagueId , season : season},
             headers: { 
-              'x-rapidapi-key': API_KEY }
+              'x-rapidapi-key': process.env.API_FOOTBALL_kEY,
+          "x-rapidapi-host": "v3.football.api-sports.io"
           };   
           try {
             const response = await axios(config);
