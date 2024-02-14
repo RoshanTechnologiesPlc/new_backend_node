@@ -11,6 +11,24 @@ module.exports = async (req, res) => {
 
     const pageNumber = req.query.page ? parseInt(req.query.page) : 0;
     const pageSize = 10;
+var language;
+    switch (req.query.lang) {
+      case"en": 
+        language = "en"
+        break; 
+      case "am":
+        language = "am"
+        break
+      case "tr" : 
+        language = "ti"
+        break;
+      case "or" : 
+        language = "or"
+        break;
+      case "si" :
+        language = "so"
+          // default "Amharic":
+        break;
 
     try {
         const newsList = await findNewsForLeague(lang, pageNumber, pageSize, leagueName);
