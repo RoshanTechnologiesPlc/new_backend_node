@@ -6,7 +6,7 @@ async function fetchPlayers(playerId){
         params: { id: `${playerId}` , season : "2023"},
         headers: {
           
-          'x-rapidapi-key': '3a6132d5f144f0812116eab47f5a5dd7'
+          'x-rapidapi-key': '1d8b97a2a806716a1f50c53d5ca840fd'
         }
       };
  
