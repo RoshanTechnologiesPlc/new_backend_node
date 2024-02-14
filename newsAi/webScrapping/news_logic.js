@@ -7,10 +7,10 @@ const translate = new Translate({ key: 'AIzaSyCau1WDN3ZsJglCClLQDLHM7gcNPyY4ZNE'
 const TestaNews = require('../../schemas/news_model')
 const qs = require('qs');
 const OPENAI_API_ENDPOINT = "https://api.openai.com/v1/chat/completions";
-
+const smmryAPIKeys = ['FB22F39FC4', '9CB8C72AEC', '7EDCBE9628'];
 
 const API_URL = 'https://api.smmry.com';
-const smmryAPIKey = '7EDCBE9628';
+
 const am ='am';
 const or ='om';
 const ti ='ti';
@@ -124,7 +124,7 @@ async function fetchAndStoreSummary() {
       const summarized_tg =await translateText(summarized,ti);
       const summarized_so =await translateText(summarized,so);
 
-
+console.log("summarized=",summarized);
       const paraphrasedTitle = await paraphraseText(rssItem.title);
       const summarizedTitle_am=await translateText(paraphrasedTitle,am);
       const summarizedTitle_or=await translateText(paraphrasedTitle,or);
@@ -247,27 +247,33 @@ async function paraphraseText(text) {
 //   }
 // }
 async function fetchSummary(url) {
-  try {
-    const fullOptions = {
-      SM_API_KEY: smmryAPIKey,
-      SM_URL: url,
-      SM_LENGTH: 5,
-      SM_WITH_BREAK: true
-    };
+  for (let apiKey of smmryAPIKeys) {
+    try {
+      const fullOptions = {
+        SM_API_KEY: apiKey,
+        SM_URL: url,
+        SM_LENGTH: 5,
+        SM_WITH_BREAK: true
+      };
 
-    const response = await axios.get(`${API_URL}?${qs.stringify(fullOptions)}`);
-    
-    if (response.data && response.data.sm_api_content) {
-      return response.data.sm_api_content.trim(); // Return the summarized content
-    } else {
-      console.error(`Empty or missing response data from the API for URL: ${url}`);
-      return ''; // Return empty string if the response is missing or empty
+      const response = await axios.get(`${API_URL}?${qs.stringify(fullOptions)}`);
+
+      if (response.data && response.data.sm_api_content) {
+        const correctedContent = response.data.sm_api_content.replace(/\[BREAK\]/g, '\n\n').trim();
+        return correctedContent; // Return the corrected summarized content
+      } else {
+        console.error(`Empty or missing response data from the API for URL: ${url}`);
+        // Don't return; try the next key
+      }
+    } catch (error) {
+      console.error(`Error with API Key ${apiKey}: ${error}`);
+      // Don't return; try the next key
     }
-  } catch (error) {
-    console.error(`Error in fetchSummary: ${error}`);
-    return ''; // Return empty string in case of an error
   }
+  return ''; // Return empty string if all keys fail
 }
+
+
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
