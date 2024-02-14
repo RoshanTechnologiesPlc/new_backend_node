@@ -1,4 +1,5 @@
 const axios = require("axios");
+const mongoose = require('mongoose');
 const getTodaysMatches = require("./getTodaysFixtures")
 const PlayerName = require("../schemas/player_names")
 const Lineup = require("../schemas/lineup_schema")
@@ -8,6 +9,19 @@ const userSockets = require("../socket/userSocket")
 const User = require("../schemas/user_model");
 const TeamData = require("../schemas/team_data")
 const matchSchema = require('../schemas/match_schema')
+const url = 'mongodb+srv://abubekersiraj:Mongodbpassword1234@test.zezynu2.mongodb.net/?retryWrites=true&w=majority';
+
+
+
+mongoose.connect(url)
+  .then(() => {
+    console.log('Connected to the MongoDB database.');
+    fetchTodaysLineup();
+   
+  })
+  .catch(err => {
+    console.error(`Error connecting to the database: ${err}`);
+  });
 require('dotenv').config()
 async function fetchTodaysLineup() {
   const fixtures = await getTodaysMatches()
@@ -25,12 +39,12 @@ async function fetchLineupForMatch(fixtureId , io , homeTeamId , awayTeamId) {
   const config = {
     method: 'GET',
 
-    url: 'https://v3.football.api-sports.io/fixtures/lineups',
+    url: `https://v3.football.api-sports.io/fixtures/lineups`,
     params: { fixture: `${fixtureId}` },
     headers: {
 
-      "x-rapidapi-host": "v3.football.api-sports.io",
-      'x-rapidapi-key': process.env.API_FOOTBALL_kEY,
+      'x-rapidapi-key':"1d8b97a2a806716a1f50c53d5ca840fd",
+      "x-rapidapi-host": "v3.football.api-sports.io"
     }
   }; 
 
@@ -38,24 +52,29 @@ async function fetchLineupForMatch(fixtureId , io , homeTeamId , awayTeamId) {
   const idsList = [homeTeamId , awayTeamId]
 
   try {
-    //  console.log(`${response.status}`)
+      console.log(`${response}`)
    if(response.status == 200){
-    console.log(response.data)
+    console.log('this is ',response.data.response)
     let lineupData = response.data.response;
-
+response
     lineupData[0]["startXI"] = await setPlayerName(lineupData[0]["startXI"])
     lineupData[0]["substitutes"] = await setPlayerName(lineupData[0]["substitutes"])
     lineupData[1]["startXI"] = await setPlayerName(lineupData[1]["startXI"])
     lineupData[1]["substitutes"] = await setPlayerName(lineupData[1]["substitutes"])
 
-    // console.log(response.data.response)
-    // console.log(`line up data is. ... ${lineupData}`)
-    // const updatedLineupData = lineupData.map((data) => ({ ...data, fixture: fixtureId }));
+     console.log(response.data.response)
+     console.log(`line up data is. ... ${lineupData}`)
+     const updatedLineupData = lineupData.map((data) => ({ ...data, fixture: fixtureId }));
 
-    // if (lineupData.length === 0) {
-    //   console.log("No fixtures found for the specified team ID and season.");
-    //   return;
-    // }
+    if (lineupData.length === 0) {
+      console.log("No fixtures found for the specified team ID and season.");
+      return;
+    }
+    if (lineupData.length < 2) {
+      console.error("Lineup data is not in the expected format or is incomplete.");
+      return false;
+    }
+    
 
     console.log( lineupData[0]["startXI"].length)
     console.log( lineupData[1]["startXI"].length)
@@ -216,6 +235,7 @@ async function fetchLineupForMatch(fixtureId , io , homeTeamId , awayTeamId) {
 
 
 async function setPlayerName(playersList) {
+  console.log(`received players`)
   let promises = [];
   console.log( `received players list is ${playersList.length}`)
   for (let data of playersList) {
