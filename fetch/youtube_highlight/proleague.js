@@ -7,7 +7,7 @@ const API_KEY ='AIzaSyDLKKL5ccJBQExXZXrRCE9t6jF3jere7GQ';
 
 mongoose.connect(url)
   .then(() => {
-    console.log('Connected to the MongoDB database.');
+    //console.log('Connected to the MongoDB database.');
     // Fetch highlights for each playlist
     const playlists = [
         

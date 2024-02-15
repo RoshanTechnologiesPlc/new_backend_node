@@ -26,7 +26,7 @@ const RSS_URL =  'https://www.90min.com/posts.rss'
 
 mongoose.connect(url)
   .then(() => {
-    console.log('Connected to the MongoDB database.');
+   // console.log('Connected to the MongoDB database.');
     fetchAndStoreSummary();
    
   })

@@ -4,6 +4,7 @@ const app = express();
 const uniqid = require("uniqid");
 const multer = require("multer");
 const News = require("./schemas/news_model");
+const Ads = require("./schemas/ads_model");
 var fileupload = require("express-fileupload");
 const League = require("./schemas/leagues");
 const { v4: uuidv4 } = require("uuid");
@@ -32,7 +33,8 @@ const adminRoute = require('./routes/admin/adminRouter')
 
 
 app.use(cors());
-
+const morgan = require("morgan");
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
 app.get("/", (req, res) => res.status(200).send("working fine!"));
 
@@ -158,6 +160,31 @@ if (lastViewCount !== null) {
   }
 }
 
+
+async function fetchAds() {
+  try {
+    const adsList = await Ads.find();
+    
+    console.log("Ads found:");
+    console.log(adsList);
+    return adsList;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+
+
+app.get("/ads", async (req, res) => {
+  try {
+    const ads = await fetchAds();
+    res.status(200).json(ads);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: "Internal server error" });
+  }
+
+});
 
 app.get("/news",  verifyRefereshToken  , async (req, res) => {
  

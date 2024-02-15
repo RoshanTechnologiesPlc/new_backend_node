@@ -10,7 +10,7 @@ const url = 'mongodb+srv://abubekersiraj:Mongodbpassword123@test.zezynu2.mongodb
 
 mongoose.connect(url)
   .then(() => {
-    console.log('Connected to the MongoDB database.');
+  //  console.log('Connected to the MongoDB database.');
     fetchHightlight();
   })
   .catch(err => {

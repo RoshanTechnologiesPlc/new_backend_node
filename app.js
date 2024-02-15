@@ -4,6 +4,7 @@ const socketIO = require("socket.io")
 const userSockets = require("./socket/userSocket")
 const mongoose = require("mongoose");
 const initializeAgenda = require('./scheduling/initialize_agenda')
+
 const verifyUserAccessTokenAndReturnId = require("./middleware/return_id_from_access_token")
 const http = require("http")
 const { seasonsFor2023, seasonsFor2022, seasonsForWorldCup } = require("./constants/availableSeasons")
@@ -20,6 +21,7 @@ const fetchTwitter = require("./fetch/social_media/fetch_twitter_feed")
 const fetchInstagram = require("./fetch/social_media/fetch_instagram")
 
 require("dotenv").config();
+
 const server = http.createServer(app)
 
 const io = socketIO(server)
@@ -80,8 +82,6 @@ mongoose.connect(MONGO_URL)
   .catch(err => {
     console.error(`Error connecting to the database: ${err}`);
   });
-
-
 
 async function startServer() {
 

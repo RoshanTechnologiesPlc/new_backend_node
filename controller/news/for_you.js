@@ -155,7 +155,7 @@ async function getPlayerNamesByIdsAndLanguage(playerIds, language) {
   
   // Helper function to escape regex special characters in team names
   function escapeRegex(text) {
-    console.log(text)
+    //console.log(text)
     if (typeof text !== 'string' || !text) {
       return ''; // Return an empty string if text is undefined or not a string
     }

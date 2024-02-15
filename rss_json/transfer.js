@@ -8,7 +8,7 @@ const mongoose = require ("mongoose");
 const url = 'mongodb+srv://abubekersiraj:Mongodbpassword1234@test.zezynu2.mongodb.net/?retryWrites=true&w=majority';
 
 mongoose.connect(url).then(() => {
-  console.log("Connected to the database");
+ // console.log("Connected to the database");
   getTransferRssFeed() 
 }
 ).catch((error) => {
