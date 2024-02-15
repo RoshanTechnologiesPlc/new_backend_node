@@ -197,7 +197,7 @@ app.get("/news",  verifyRefereshToken  , async (req, res) => {
       .sort({publishedDate : -1})
       .skip(skip)
       .limit(pageSize)
-  console.log("newsResult=",newsResult)
+ // console.log("newsResult=",newsResult)
   newsResult =  [ trendingNews ,   ...newsResult ]
     return res.status(200).json(newsResult);
   } catch (error) {

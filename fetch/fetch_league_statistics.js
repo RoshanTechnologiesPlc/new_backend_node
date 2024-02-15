@@ -121,7 +121,7 @@ async function fetchStandingNew(leagueId, season){
    else{
       teamObject = teamInfo
    }
-   console.log(teamObject)
+   //console.log(teamObject)
   if (teamObject == false) {
     teamObject = {
       id: standingData.team.id,
@@ -146,7 +146,7 @@ async function fetchStandingNew(leagueId, season){
     { upsert: true, new: true, maxTimeMS: 90000 }
   );
   
-   console.log(teamInfo)
+   //console.log(teamInfo)
  // }  
  const teamStat = {
   leagueid: leagueId,
@@ -242,7 +242,7 @@ async function fetchStandingNew(leagueId, season){
       }
 
       function calculateHomePoint(homeWon, homeDraw){
-        console.log(`home point is  ... ${homeWon * 3 + homeDraw * 1}`)
+        //console.log(`home point is  ... ${homeWon * 3 + homeDraw * 1}`)
             return homeWon * 3 + homeDraw * 1;
       }
 

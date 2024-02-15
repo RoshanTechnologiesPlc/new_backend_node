@@ -38,7 +38,8 @@ async function fetchTopRedCardScorers(leagueId  , season){
             headers: { 
               'x-rapidapi-key': process.env.API_FOOTBALL_kEY,
           "x-rapidapi-host": "v3.football.api-sports.io"
-          };   
+          }
+        };   
           try {
             const response = await axios(config);
               if (response.status  == 200) {

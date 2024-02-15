@@ -1,7 +1,7 @@
 const axios = require('axios');
 async function transliterateToAmharic(Team) {
   console.log(" --- recieved this team")
-console.log(Team)    
+//console.log(Team)    
  
 const OPENAI_API_ENDPOINT = "https://api.openai.com/v1/chat/completions";
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;

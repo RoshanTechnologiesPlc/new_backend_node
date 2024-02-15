@@ -45,7 +45,7 @@ async function getTransferRssFeed() {
 
       for (const item of items) {
         const response = await fetchDataByPlayerName(item.playerName);
-        console.log("players data :-", item.playerName);
+       // console.log("players data :-", item.playerName);
       
         if (!response) {
           const result = {
@@ -62,7 +62,7 @@ async function getTransferRssFeed() {
           console.log("Inserted new player data:", result);
 
         } else {
-          console.log("Player found:", response);
+          //console.log("Player found:", response);
         }
       }
       

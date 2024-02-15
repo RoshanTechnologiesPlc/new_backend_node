@@ -93,13 +93,13 @@ async function fetchAndStoreSummary() {
 
     for (const rssItem of toProcessRssFeeds) {
   
-    console.log(`Processing document URL ${rssItem.newsLink}`);
+    //console.log(`Processing document URL ${rssItem.newsLink}`);
     const rsslink = rssItem.newsLink;
 
     const doesNewsExist = await TestaNews.find({ newsLink: rsslink });
     if (doesNewsExist.length > 0) {
       
-      console.log("News already exist");
+      //console.log("News already exist");
 
     }
 

@@ -105,7 +105,7 @@ async function updateTeamNames(leagueId){
     for(let i = 0 ; i < teamNames.length ; i++){
         team = teamNames[i]
         try{
-            console.log(team)
+            //console.log(team)
             await teamDataSchema.updateOne(
                 { id  : team.id } , 
                 { $set : {

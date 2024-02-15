@@ -1,4 +1,9 @@
 module.exports = {
+    'abbreviation': {
+        'English Premier League': ['EPL', 'Premier League'],
+        'Spanish La Liga': ['La Liga'],
+        'Italian Serie A': ['Serie A'],
+    },
     '39': {
         'am': 'እንግሊዝ ፕሪምየር ሊግ',
         'en': 'English Premier League',
