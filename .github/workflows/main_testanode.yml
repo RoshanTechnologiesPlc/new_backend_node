@@ -57,6 +57,5 @@ jobs:
         with:
           app-name: 'TestaNode'  # Specifies the Azure Web App name
           slot-name: 'Production'  # Specifies the deployment slot
-          publish-profile: ${{AZUREAPPSERVICE_PUBLISHPROFILE_BD1DB385D7B143918A693B16DE5BBEDF}}
- }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BD1DB385D7B143918A693B16DE5BBEDF }}  # Uses the publish profile from secrets
           package: .  # Specifies the path to the package to deploy
