@@ -1,5 +1,5 @@
 const app = require("./appp");
-const port = process.env.PORT || 10000;
+const port = 10000 || 10000;
 const socketIO = require("socket.io")
 const userSockets = require("./socket/userSocket")
 const mongoose = require("mongoose");
