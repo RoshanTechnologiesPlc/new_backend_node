@@ -1,6 +1,7 @@
 const express = require("express");
 const news = require("./schemas/news_model");
 const app = express();
+const router = express.Router(); 
 const uniqid = require("uniqid");
 const multer = require("multer");
 const News = require("./schemas/news_model");
@@ -412,3 +413,32 @@ app.get("/event/:fixtureId" , async(req, res)=>{
 
 
 module.exports= app
+
+async function getListofMatches() {
+  try {
+    console.log('Finding matches with non-null YouTube highlights...');
+    const matches = await Match.find({
+      'youtubeHighlight.VideoTitle': { $ne: null },
+      'youtubeHighlight.VideoId': { $ne: null },
+      'youtubeHighlight.Thumbnail': { $ne: null }
+    }).lean(); 
+
+    console.log(`Found ${matches.length} matches with valid YouTube highlights.`);
+    return matches;
+  } catch (error) {
+    console.error('Error fetching matches:', error.message);
+    throw error; 
+  }
+}
+
+
+router.get('/matches', async (req, res) => {
+  try {
+    const matches = await getListofMatches();
+    res.json(matches); 
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching matches', error: error.message });
+  }
+});
+
+app.use('/api', router);
