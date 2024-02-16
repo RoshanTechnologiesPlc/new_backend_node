@@ -55,7 +55,13 @@ const matchSchema = new mongoose.Schema({
       home: Number,
       away: Number
     }
+  },
+  youtubeHighlight: {
+    VideoTitle: String,
+    VideoId: String,
+    Thumbnail: String
   }
-} , {timestamps : true});
+}
+, {timestamps : true});
 
 module.exports = mongoose.model("Match", matchSchema);
