@@ -416,7 +416,7 @@ module.exports= app
 async function getListofMatches() {
   try {
     console.log('Finding matches with non-null YouTube highlights...');
-    const matches = await Match.find({
+    const matches = await Matches.find({
       'youtubeHighlight.VideoTitle': { $ne: null },
       'youtubeHighlight.VideoId': { $ne: null },
       'youtubeHighlight.Thumbnail': { $ne: null }
