@@ -413,7 +413,6 @@ app.get("/event/:fixtureId" , async(req, res)=>{
 
 
 module.exports= app
-
 async function getListofMatches() {
   try {
     console.log('Finding matches with non-null YouTube highlights...');
@@ -423,7 +422,7 @@ async function getListofMatches() {
       'youtubeHighlight.Thumbnail': { $ne: null }
     }).lean(); 
 
-    console.log(`Found ${matches.length} matches with valid YouTube highlights.`);
+   // console.log(`Found ${matches.length} matches with valid YouTube highlights.`);
     return matches;
   } catch (error) {
     console.error('Error fetching matches:', error.message);
@@ -432,13 +431,12 @@ async function getListofMatches() {
 }
 
 
-router.get('/matches', async (req, res) => {
+app.get('/api/matches', async (req, res) => {
   try {
     const matches = await getListofMatches();
     res.json(matches); 
+    console.log(matches);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching matches', error: error.message });
   }
 });
-
-app.use('/api', router);
