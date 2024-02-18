@@ -420,16 +420,16 @@ async function getListofMatches() {
       'youtubeHighlight.VideoTitle': { $ne: null },
       'youtubeHighlight.VideoId': { $ne: null },
       'youtubeHighlight.Thumbnail': { $ne: null }
-    }).lean(); 
+    }).sort({'createdAt': 1}) 
+    .lean();
 
-   // console.log(`Found ${matches.length} matches with valid YouTube highlights.`);
+    // console.log(`Found ${matches.length} matches with valid YouTube highlights.`);
     return matches;
   } catch (error) {
     console.error('Error fetching matches:', error.message);
     throw error; 
   }
 }
-
 
 app.get('/api/matches', async (req, res) => {
   try {
