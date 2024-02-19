@@ -420,16 +420,17 @@ async function getListofMatches() {
       'youtubeHighlight.VideoTitle': { $ne: null },
       'youtubeHighlight.VideoId': { $ne: null },
       'youtubeHighlight.Thumbnail': { $ne: null }
-    }).sort({'createdAt': 1}) 
-    .lean();
+    }).populate('homeTeam', 'EnglishName') 
+    .populate('awayTeam', 'EnglishName').lean(); 
 
-    // console.log(`Found ${matches.length} matches with valid YouTube highlights.`);
+   console.log(`Found ${matches.goals} matches with valid YouTube highlights.`);
     return matches;
   } catch (error) {
     console.error('Error fetching matches:', error.message);
     throw error; 
   }
 }
+
 
 app.get('/api/matches', async (req, res) => {
   try {
