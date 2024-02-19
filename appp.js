@@ -420,8 +420,8 @@ async function getListofMatches() {
       'youtubeHighlight.VideoTitle': { $ne: null },
       'youtubeHighlight.VideoId': { $ne: null },
       'youtubeHighlight.Thumbnail': { $ne: null }
-    }).populate('homeTeam', 'EnglishName') 
-    .populate('awayTeam', 'EnglishName').lean(); 
+    }).populate('homeTeam', 'EnglishName AmharicName OromoName SomaliName') 
+    .populate('awayTeam', 'EnglishName AmharicName OromoName SomaliName').lean(); 
 
    console.log(`Found ${matches.goals} matches with valid YouTube highlights.`);
     return matches;
