@@ -28,11 +28,11 @@ const matchSchema = new mongoose.Schema({
   },
   homeTeam:  {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "TeamDataSchema" 
+    ref: TeamDataSchema
   }  , 
   awayTeam :  {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "TeamDataSchema" 
+    ref: TeamDataSchema
   }  ,
   goals: {
     home: Number,
@@ -55,7 +55,13 @@ const matchSchema = new mongoose.Schema({
       home: Number,
       away: Number
     }
+  },
+  youtubeHighlight: {
+    VideoTitle: String,
+    VideoId: String,
+    Thumbnail: String
   }
-} , {timestamps : true});
+}
+, {timestamps : true});
 
 module.exports = mongoose.model("Match", matchSchema);

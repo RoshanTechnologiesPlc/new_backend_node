@@ -39,7 +39,7 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
           return false
          }
     } catch (error) { 
-        console.error("Error transliterating text: "  + error);
+        //console.error("Error transliterating text: "  + error);
         console.log(response)
         return false
     }

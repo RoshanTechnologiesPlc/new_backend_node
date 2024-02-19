@@ -14,6 +14,7 @@ const newsSchema = new mongoose.Schema({
   mainImage: String,
   publishedDate: Date,
   title: String,
+  is_processed: Boolean,
 
   author_so: String,
   author_am: String,
@@ -39,6 +40,12 @@ const newsSchema = new mongoose.Schema({
   summarizedTitle_or: String, 
   summarizedTitle_tg: String, 
   summarizedTitle_so: String,
+
+  transcriptions_am: {type:String, required: false},
+  transcriptions_or: {type:String, required: false},
+  transcriptions_tg: {type:String, required: false},
+  transcriptions_so: {type:String, required: false},
+
 }, { timestamps: true }); 
 
 module.exports = mongoose.model("news", newsSchema);

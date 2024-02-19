@@ -1,6 +1,7 @@
 const express = require("express");
 const news = require("./schemas/news_model");
 const app = express();
+const router = express.Router(); 
 const uniqid = require("uniqid");
 const multer = require("multer");
 const News = require("./schemas/news_model");
@@ -34,6 +35,9 @@ const adminRoute = require('./routes/admin/adminRouter')
 
 app.use(cors());
 const morgan = require("morgan");
+const statistics = require("./schemas/team_statistics");
+
+
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
 app.get("/", (req, res) => res.status(200).send("working fine!"));
@@ -412,3 +416,55 @@ app.get("/event/:fixtureId" , async(req, res)=>{
 
 
 module.exports= app
+async function getListofMatches() {
+  try {
+    console.log('Finding matches with non-null YouTube highlights...');
+    const matches = await Matches.find({
+      'youtubeHighlight.VideoTitle': { $ne: null },
+      'youtubeHighlight.VideoId': { $ne: null },
+      'youtubeHighlight.Thumbnail': { $ne: null }
+    }).populate('homeTeam', 'EnglishName AmharicName OromoName SomaliName') 
+    .populate('awayTeam', 'EnglishName').lean(); 
+
+   console.log(`Found ${matches.goals} matches with valid YouTube highlights.`);
+    return matches;
+  } catch (error) {
+    console.error('Error fetching matches:', error.message);
+    throw error; 
+  }
+}
+
+
+app.get('/api/matches', async (req, res) => {
+  try {
+    const matches = await getListofMatches();
+    res.json(matches); 
+    console.log(matches);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching matches', error: error.message });
+  }
+});
+
+
+async function getStatstics() {
+  try {
+      console.log('Finding matches with non-null YouTube highlights...');
+  const stat = await statistics.find({}).lean(); 
+console.log(stat);
+    return stat;
+  } catch (error) {
+    console.error('Error fetching matches:', error.message);
+    throw error; 
+  }
+}
+
+app.get('/api/teamlist', async (req, res) => {
+  try {
+    const matches = await getStatstics();
+    res.json(matches); 
+    console.log(matches);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching matches', error: error.message });
+  }
+});
+

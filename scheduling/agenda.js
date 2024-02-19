@@ -30,13 +30,13 @@ module.exports = async function(agenda, io) {
       if (["FT", "PST", "AET", "CANC", "ABD", "AWD", "TBD", "WO", "PEN"].includes(match.status.short)) {
         console.log(`Match ${matchId} has ended or is not scheduled`);
         await job.remove(); // Remove the job if the match has ended
-        // return;
+        return;
       }
   
       if(match.status.short === 'NS'){
         console.log(`Match ${matchId} has not started yet`);
         await job.schedule(new Date(Date.now() + 1000 * 60 * 20   )).save(); //edit the code here
-        // return;
+        return;
       }else{
           // Fetch match statistics if the match is still ongoing
       await fetchMatchStatistics(matchId);
@@ -494,7 +494,7 @@ module.exports = async function(agenda, io) {
        await Promise.all(notificationPromises);
 
 
-      // return ;
+      return ;
     
      }
 
@@ -509,7 +509,7 @@ module.exports = async function(agenda, io) {
         await fetchLastFiveMatches(receivedMatch?.awayTeam?.id);
         await job.remove();
         clearInterval(checkInterval);
-        // return ;
+        return ;
       }else{
         //console.log(`final match check is fetching the fixture for match ${fixtureId}`)
         await fetchFixtureByFixtureId(fixtureId);
