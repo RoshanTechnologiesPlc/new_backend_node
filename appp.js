@@ -31,7 +31,7 @@ const SomaliSynthesis = require("./speech_synthesis/somali_oromo");
 const AmharicSynthesis = require("./speech_synthesis/amharic_tigrigna");
 const teamData = require("./schemas/team_data")
 const adminRoute = require('./routes/admin/adminRouter')
-
+const statistics = require("./schemas/team_statistics");
 
 app.use(cors());
 const morgan = require("morgan");
@@ -424,7 +424,7 @@ async function getListofMatches() {
       'youtubeHighlight.VideoId': { $ne: null },
       'youtubeHighlight.Thumbnail': { $ne: null }
     }).populate('homeTeam', 'EnglishName AmharicName OromoName SomaliName') 
-    .populate('awayTeam', 'EnglishName').lean(); 
+    .populate('awayTeam', 'EnglishName AmharicName OromoName SomaliName') .sort({ date: -1 }) .lean(); 
 
    console.log(`Found ${matches.goals} matches with valid YouTube highlights.`);
     return matches;
@@ -444,8 +444,6 @@ app.get('/api/matches', async (req, res) => {
     res.status(500).json({ message: 'Error fetching matches', error: error.message });
   }
 });
-
-
 async function getStatstics() {
   try {
       console.log('Finding matches with non-null YouTube highlights...');
@@ -467,4 +465,3 @@ app.get('/api/teamlist', async (req, res) => {
     res.status(500).json({ message: 'Error fetching matches', error: error.message });
   }
 });
-

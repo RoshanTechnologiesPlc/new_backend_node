@@ -28,7 +28,7 @@ const matchSchema = new mongoose.Schema({
   },
   homeTeam:  {
     type: mongoose.Schema.Types.ObjectId,
-    ref: TeamDataSchema
+    ref: TeamDataSchema 
   }  , 
   awayTeam :  {
     type: mongoose.Schema.Types.ObjectId,

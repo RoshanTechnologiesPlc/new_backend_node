@@ -28,7 +28,7 @@ mongoose.connect(url)
   .then(() => {
    // console.log('Connected to the MongoDB database.');
     fetchAndStoreSummary();
-    setInterval(fetchAndStoreSummary, 600000); 
+   setInterval(fetchAndStoreSummary, 600000); 
   })
   .catch(err => {
     console.error(`Error connecting to the database: ${err}`);
