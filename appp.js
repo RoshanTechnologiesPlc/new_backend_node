@@ -35,7 +35,6 @@ const statistics = require("./schemas/team_statistics");
 
 app.use(cors());
 const morgan = require("morgan");
-const statistics = require("./schemas/team_statistics");
 
 
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
