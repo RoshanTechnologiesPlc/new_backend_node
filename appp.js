@@ -489,3 +489,151 @@ app.get('/api/teamlistEnglish', async (req, res) => {
     res.status(500).json({ message: 'Error fetching matches', error: error.message });
   }
 });
+
+async function getStatisticsFrance() {
+  try {
+    console.log('Finding leagueId=61...');
+    const stat = await statistics.find({ leagueid: 61 ,season:2023  }).lean(); 
+    console.log(stat);
+    return stat;
+  } catch (error) {
+    console.error('Error fetching matches:', error.message);
+    throw error; 
+  }
+}
+
+
+app.get('/api/teamlistFrance', async (req, res) => {
+  try {
+    const matches = await getStatisticsFrance();
+    res.json(matches); 
+    console.log(matches);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching matches', error: error.message });
+  }
+});
+
+//spain
+
+async function getStatisticsSpain() {
+  try {
+    console.log('Finding leagueId=140...');
+    const stat = await statistics.find({ leagueid: 140 ,season:2023  }).lean(); 
+    console.log(stat);
+    return stat;
+  } catch (error) {
+    console.error('Error fetching matches:', error.message);
+    throw error; 
+  }
+}
+
+
+app.get('/api/teamlistSpain', async (req, res) => {
+  try {
+    const matches = await getStatisticsSpain();
+    res.json(matches); 
+    console.log(matches);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching matches', error: error.message });
+  }
+});
+
+//italy
+
+async function getStatisticsItaly() {
+  try {
+    console.log('Finding leagueId=135...');
+    const stat = await statistics.find({ leagueid: 135 ,season:2023  }).lean(); 
+    console.log(stat);
+    return stat;
+  } catch (error) {
+    console.error('Error fetching matches:', error.message);
+    throw error; 
+  }
+}
+
+
+app.get('/api/teamlistItaly', async (req, res) => {
+  try {
+    const matches = await getStatisticsItaly();
+    res.json(matches); 
+    console.log(matches);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching matches', error: error.message });
+  }
+});
+
+//german
+
+async function getStatisticsGermany() {
+  try {
+    console.log('Finding leagueId=78...');
+    const stat = await statistics.find({ leagueid: 78 ,season:2023  }).lean(); 
+    console.log(stat);
+    return stat;
+  } catch (error) {
+    console.error('Error fetching matches:', error.message);
+    throw error; 
+  }
+}
+
+
+app.get('/api/teamlistGermany', async (req, res) => {
+  try {
+    const matches = await getStatisticsGermany();
+    res.json(matches); 
+    console.log(matches);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching matches', error: error.message });
+  }
+});
+
+//saudi
+
+async function getStatisticsSaudi() {
+  try {
+    console.log('Finding leagueId=135...');
+    const stat = await statistics.find({ leagueid: 307 ,season:2023  }).lean(); 
+    console.log(stat);
+    return stat;
+  } catch (error) {
+    console.error('Error fetching matches:', error.message);
+    throw error; 
+  }
+}
+
+
+app.get('/api/teamlistSaudi', async (req, res) => {
+  try {
+    const matches = await getStatisticsSaudi();
+    res.json(matches); 
+    console.log(matches);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching matches', error: error.message });
+  }
+});
+
+//south africa
+
+async function getStatisticsSouthAf() {
+  try {
+    console.log('Finding leagueId=135...');
+    const stat = await statistics.find({ leagueid: 288 ,season:2023  }).lean(); 
+    console.log(stat);
+    return stat;
+  } catch (error) {
+    console.error('Error fetching matches:', error.message);
+    throw error; 
+  }
+}
+
+
+app.get('/api/teamlistSouthAf', async (req, res) => {
+  try {
+    const matches = await getStatisticsSouthAf();
+    res.json(matches); 
+    console.log(matches);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching matches', error: error.message });
+  }
+});
