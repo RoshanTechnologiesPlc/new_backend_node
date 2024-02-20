@@ -443,11 +443,12 @@ app.get('/api/matches', async (req, res) => {
     res.status(500).json({ message: 'Error fetching matches', error: error.message });
   }
 });
-async function getStatstics() {
+async function getStatistics() {
   try {
-      console.log('Finding matches with non-null YouTube highlights...');
-  const stat = await statistics.find({}).lean(); 
-console.log(stat);
+    console.log('Finding leagueId=363...');
+    // Include the condition in the find method
+    const stat = await statistics.find({ leagueId: 363 ,season:2023  }).lean(); 
+    console.log(stat);
     return stat;
   } catch (error) {
     console.error('Error fetching matches:', error.message);
@@ -455,9 +456,10 @@ console.log(stat);
   }
 }
 
+
 app.get('/api/teamlist', async (req, res) => {
   try {
-    const matches = await getStatstics();
+    const matches = await getStatistics();
     res.json(matches); 
     console.log(matches);
   } catch (error) {
