@@ -467,3 +467,25 @@ app.get('/api/teamlist', async (req, res) => {
   }
 });
 
+async function getStatisticsEnglish() {
+  try {
+    console.log('Finding leagueId=39...');
+    const stat = await statistics.find({ leagueid: 39 ,season:2023  }).lean(); 
+    console.log(stat);
+    return stat;
+  } catch (error) {
+    console.error('Error fetching matches:', error.message);
+    throw error; 
+  }
+}
+
+
+app.get('/api/teamlistEnglish', async (req, res) => {
+  try {
+    const matches = await getStatisticsEnglish();
+    res.json(matches); 
+    console.log(matches);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching matches', error: error.message });
+  }
+});
