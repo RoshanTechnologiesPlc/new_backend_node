@@ -447,7 +447,7 @@ async function getStatistics() {
   try {
     console.log('Finding leagueId=363...');
     // Include the condition in the find method
-    const stat = await statistics.find({ leagueId: 363 ,season:2023  }).lean(); 
+    const stat = await statistics.find({ leagueid: 363 ,season:2023  }).lean(); 
     console.log(stat);
     return stat;
   } catch (error) {
