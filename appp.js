@@ -443,27 +443,11 @@ app.get('/api/matches', async (req, res) => {
     res.status(500).json({ message: 'Error fetching matches', error: error.message });
   }
 });
+
 async function getStatistics() {
   try {
-    console.log('Finding unique items by id where leagueId=363...');
-    const stat = await statistics.aggregate([
-      {
-        $match: {
-          leagueId: 363,
-          season: 2023
-        }
-      },
-      {
-        $group: {
-          _id: "$id", 
-          doc: { $first: "$$ROOT" } 
-        }
-      },
-      {
-        $replaceRoot: { newRoot: "$doc" } 
-      }
-    ]).exec(); 
-
+    console.log('Finding leagueId=363...');
+    const stat = await statistics.find({ leagueid: 363 ,season:2023  }).lean(); 
     console.log(stat);
     return stat;
   } catch (error) {
@@ -482,3 +466,4 @@ app.get('/api/teamlist', async (req, res) => {
     res.status(500).json({ message: 'Error fetching matches', error: error.message });
   }
 });
+
