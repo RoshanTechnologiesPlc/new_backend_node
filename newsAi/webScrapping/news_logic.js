@@ -126,7 +126,7 @@ console.log("summarized=",summarized);
 
       const document = await TestaNews.create({
         ...rssItem,
-        is_processed: true,
+        is_processed: false,
         summarizedTitle: paraphrasedTitle,
         summarizedDescription: rssItem.description,
         summarized: summarized,
