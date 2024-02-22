@@ -6,14 +6,20 @@ const { Translate } = require('@google-cloud/translate').v2;
 const translate = new Translate({ key: 'AIzaSyCau1WDN3ZsJglCClLQDLHM7gcNPyY4ZNE' });
 const TestaNews = require('../../schemas/news_model')
 const qs = require('qs');
+
+const { BlobServiceClient } = require("@azure/storage-blob");
+const fs = require("fs").promises;
 const OPENAI_API_ENDPOINT = "https://api.openai.com/v1/chat/completions";
 const smmryAPIKeys = ['FB22F39FC4', '9CB8C72AEC', '7EDCBE9628'];
+
+var sdk = require("microsoft-cognitiveservices-speech-sdk");
+const path = require("path");
 
 const API_URL = 'https://api.smmry.com';
 
 const am ='am';
 const or ='om';
-const ti ='ti';
+const tr ='ti';
 const so ='so';
 
 var loadedNewUrls = [];
@@ -28,7 +34,7 @@ mongoose.connect(url)
   .then(() => {
    // console.log('Connected to the MongoDB database.');
     fetchAndStoreSummary();
-   setInterval(fetchAndStoreSummary, 600000); 
+    setInterval(fetchAndStoreSummary, 600000); 
   })
   .catch(err => {
     console.error(`Error connecting to the database: ${err}`);
@@ -62,27 +68,6 @@ async function parseAndLoadRSS() {
   return forProcessRSS;
 }
 
-// async function parseAndLoadRSS(){
-//   const data = (await axios.get(RSS_URL)).data;
-//   //console.log("data=",data);
-//   const parser = new xml2js.Parser();
-//   const result = await parser.parseStringPromise(data);
-//   var forProcessRSS = result.rss.channel[0].item.filter(item=>{
-//     return loadedNewUrls.includes(item.link[0]) == false;
-//   }).map(item => ({
-//       newsLink: item.link[0],
-//       title: item.title[0],
-//       author: item.author ? item.author[0] : null,
-//       description: item.description[0],
-//       publishedDate: item.pubDate[0],
-//       // More robust checking for media:thumbnail
-//       mainImage: item['media:thumbnail'] && item['media:thumbnail'][0] && item['media:thumbnail'][0]['$'] ? item['media:thumbnail'][0]['$'].url : null,
-//       figCaption: item['media:thumbnail'] && item['media:thumbnail'][0] && item['media:thumbnail'][0]['$'] ? item['media:thumbnail'][0]['$'].caption : null
-//   }));
-
-//   loadedNewUrls = loadedNewUrls.concat(forProcessRSS.map(item=>item.link));
-//   //console.log("forProcessRSS.length=",forProcessRSS.length);
-//   return forProcessRSS;
 
 
 
@@ -109,46 +94,46 @@ async function fetchAndStoreSummary() {
       //const paraphrasedDescription = await paraphraseText(rssItem.description);
       // const summarisedDescription_am =await translateText(paraphrasedDescription,am);
       // const summarizedDescription_or =await translateText(paraphrasedDescription,or);
-      // const summarizedDescription_tg =await translateText(paraphrasedDescription,ti);
+      // const summarizedDescriptron_tr =await translateText(paraphrasedDescription,ti);
       // const summarizedDescription_so =await translateText(paraphrasedDescription,so);
      
      // const paraphrasedCaption = await paraphraseText(rssItem.figCaption);
       const summarisedCaption_am = await translateText(rssItem.figCaption, am);
       const summarisedCaption_or = await translateText(rssItem.figCaption, or); 
-      const summarisedCaption_tg = await translateText(rssItem.figCaption, ti);
+      const summarisedCaption_tr = await translateText(rssItem.figCaption, tr);
       const summarisedCaption_so = await translateText(rssItem.figCaption, so);
       
       const summarized = await fetchSummary(rssItem.newsLink);
       const summarized_am = await translateText(summarized,am);
       const summarised_or =await translateText(summarized,or);
-      const summarized_tg =await translateText(summarized,ti);
+      const summarized_tr =await translateText(summarized,tr);
       const summarized_so =await translateText(summarized,so);
 
 console.log("summarized=",summarized);
       const paraphrasedTitle = await paraphraseText(rssItem.title);
       const summarizedTitle_am=await translateText(paraphrasedTitle,am);
       const summarizedTitle_or=await translateText(paraphrasedTitle,or);
-      const summarizedTitle_tg=await translateText(paraphrasedTitle,ti);
+      const summarizedTitle_tr=await translateText(paraphrasedTitle,tr);
       const  summarizedTitle_so=await translateText(paraphrasedTitle,so);
 
 
       const author_am = await transliterateText(rssItem.author,"Amharic (Geez Script)");
       const author_or =rssItem.author
-      const author_tg = author_am
+      const author_tr = author_am
       const author_so = rssItem.author
 
  
 
       const document = await TestaNews.create({
         ...rssItem,
-        is_processed: false,
+        is_processed: true,
         summarizedTitle: paraphrasedTitle,
         summarizedDescription: rssItem.description,
         summarized: summarized,
 
         author_am: author_am,
         author_or: author_or,
-        author_tg: author_tg,
+        author_tr: author_tr,
         author_so: author_so,
 
         
@@ -166,11 +151,11 @@ console.log("summarized=",summarized);
         summarized_or:summarised_or,
         summarizedDescription_or:rssItem.description,
 
-        figCaption_tg: summarisedCaption_tg, 
+        figCaption_tr: summarisedCaption_tr, 
        
-        summarizedTitle_tg:summarizedTitle_tg,
-        summarized_tg:summarized_tg,
-        summarizedDescription_tg:rssItem.description,
+        summarizedTitle_tr:summarizedTitle_tr,
+        summarized_tr:summarized_tr,
+        summarizedDescription_tr:rssItem.description,
 
         figCaption_so: summarisedCaption_so,
 
@@ -181,7 +166,9 @@ console.log("summarized=",summarized);
 
       console.log(`Document ID ${document._id} Created with paraphrased title, description, and link summary.`);
       
-      await delay(2000); // Delay to prevent hitting rate limits
+      await delay(2000);
+      processNewsItems();
+
     }
   } 
  }
@@ -328,3 +315,118 @@ async function transliterateText(text,toScript) {
 
 //fetchAndStoreSummary();
 // module.exports = ()=>console.log("new logic noop");
+
+async function getNewsFromDb() {
+  const newsItems = await TestaNews.find({ is_processed: 'false' });
+  return newsItems;
+}
+async function azureTtsSynthesis(text, lang, outputFile) {
+    const speechConfig = sdk.SpeechConfig.fromSubscription('244c9d3843e244fba5a785f5b86ec340', 'eastus');
+    speechConfig.speechSynthesisVoiceName = {
+        "am": "am-ET-AmehaNeural",
+        "or": "so-SO-MuuseNeural", // Placeholder: Replace with actual voice name if available
+        "tr": "am-ET-AmehaNeural", // Placeholder
+        "so": "so-SO-MuuseNeural" // Placeholder
+    }[lang]; 
+
+    const audioConfig = sdk.AudioConfig.fromAudioFileOutput(outputFile);
+    const synthesizer = new sdk.SpeechSynthesizer(speechConfig, audioConfig);
+
+    return new Promise((resolve, reject) => {
+        synthesizer.speakTextAsync(text, result => {
+            synthesizer.close();
+            if (result) {
+                resolve(outputFile);
+            } else {
+                reject(new Error("Speech synthesis was canceled."));
+            }
+        }, error => {
+            synthesizer.close();
+            reject(error);
+        });
+    });
+}
+
+async function processNewsItems() {
+    const newsItems = await getNewsFromDb();
+    
+    for (const item of newsItems) {
+        const newsId = item.id.toString(); // Assuming MongoDB ObjectId for newsId
+        let processed = false; // Flag to check if any language was processed
+
+        const languages = ['am', 'or', 'tr', 'so'];
+        
+        for (const lang of languages) {
+            const fieldName = `summarized_${lang}`;
+            const transcript = item[fieldName];
+            
+            if (transcript) {
+                const outputFile = path.join(__dirname,'temp', `${newsId}_${lang}.mp3`);
+              
+                try {
+                   const voice= await azureTtsSynthesis(transcript, lang, outputFile);
+                   
+
+
+
+
+
+
+                    console.log(`Successfully processed ${fieldName} for news item with ID ${newsId}`);
+                   processed = true;
+                    uploadToAzure(outputFile);
+
+                } catch (error) {
+                    console.log(`Failed to process ${fieldName} for news item with ID ${newsId}: ${error}`);
+                }
+            }
+        }
+
+        if (processed) {
+            await markNewsItemAsProcessed(newsId);
+        }
+    }
+}
+async function markNewsItemAsProcessed(newsId) {
+  try {
+      await TestaNews.updateOne({ id: newsId}, { $set: { is_processed: 'true' } });
+      console.log(`News item ${newsId} marked as processed.`);
+  } catch (error) {
+      console.error('Error updating the news item:', error);
+  }
+}
+
+async function uploadToAzure(filePath) {
+    require('dotenv').config()
+  const connectionString ="DefaultEndpointsProtocol=https;AccountName=testanewsstorage;AccountKey=Kg0RBVr0vlwnNQ6wkgy7oRSlx96w2TImnfuz0FbWjfkMcVdZHYDK6FDFQMISrSwCea0se1ICSVpv+AStq4Pu9g==;EndpointSuffix=core.windows.net"; 
+  const containerName = "transcriptions"
+
+  const blobName = filePath.split(/[/\\]/).pop();
+
+
+  try {
+    const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
+    const containerClient = blobServiceClient.getContainerClient(containerName);
+    const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+
+    const fileBuffer = await fs.readFile(filePath);
+    const uploadResponse = await blockBlobClient.upload(fileBuffer, fileBuffer.length);
+    
+
+    if (uploadResponse._response.status === 201) {
+      console.log("Successfully uploaded to Azure:", filePath);
+
+      // Delete the local file
+      await fs.unlink(filePath);
+      console.log("Successfully deleted local file:", filePath);
+
+      return true;
+    } else {
+      console.log("Error uploading file:", uploadResponse._response.status, uploadResponse._response.bodyAsText);
+      return false;
+    }
+  } catch (error) {
+    console.log("Error uploading file:", error);
+    return false;
+  }
+}
