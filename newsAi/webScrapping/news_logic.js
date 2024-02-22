@@ -361,7 +361,7 @@ async function processNewsItems() {
             const transcript = item[fieldName];
             
             if (transcript) {
-                const outputFile = path.join(__dirname,'temp', `${newsId}_${lang}.mp3`);
+                const outputFile = path.join(__dirname, `${newsId}_${lang}.mp3`);
               
                 try {
                    const voice= await azureTtsSynthesis(transcript, lang, outputFile);
