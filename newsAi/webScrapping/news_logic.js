@@ -10,7 +10,7 @@ const qs = require('qs');
 const { BlobServiceClient } = require("@azure/storage-blob");
 const fs = require("fs").promises;
 const OPENAI_API_ENDPOINT = "https://api.openai.com/v1/chat/completions";
-const smmryAPIKeys = ['FB22F39FC4', '9CB8C72AEC', '7EDCBE9628'];
+const smmryAPIKeys = ['41ABB0837D','FB22F39FC4', '9CB8C72AEC', '7EDCBE9628'];
 
 var sdk = require("microsoft-cognitiveservices-speech-sdk");
 const path = require("path");
