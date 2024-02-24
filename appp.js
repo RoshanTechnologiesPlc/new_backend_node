@@ -637,3 +637,24 @@ app.get('/api/teamlistSouthAf', async (req, res) => {
     res.status(500).json({ message: 'Error fetching matches', error: error.message });
   }
 });
+
+async function getplayers() {
+  try {
+    console.log('Finding ...');
+    const stat = await Player.find({ }); 
+    console.log(stat);
+    return stat;
+  } catch (error) {
+    console.error('Error fetching matches:', error.message);
+    throw error; 
+  }
+}
+app.get('/api/playersget', async (req, res) => {
+  try {
+    const matches = await getplayers();
+    res.json(matches); 
+    console.log(matches);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching matches', error: error.message });
+  }
+});
