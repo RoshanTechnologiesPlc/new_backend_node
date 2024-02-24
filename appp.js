@@ -13,6 +13,7 @@ const apiRoute = require("./routes/apiRouter");
 const lineup = require("./schemas/lineup_schema")
 const allPlayers = require("./models/allPlayer")
 const FixtureEvent = require("./schemas/event_schema")
+const Player = require("./schemas/fifa_rename")
 const path = require("path"); 
 const bodyParser = require("body-parser");
 const Matches = require("./schemas/match_schema")
@@ -35,6 +36,7 @@ const statistics = require("./schemas/team_statistics");
 
 app.use(cors());
 const morgan = require("morgan");
+
 
 
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
@@ -467,6 +469,7 @@ app.get('/api/teamlist', async (req, res) => {
   }
 });
 
+
 async function getStatisticsEnglish() {
   try {
     console.log('Finding leagueId=39...');
@@ -489,6 +492,8 @@ app.get('/api/teamlistEnglish', async (req, res) => {
     res.status(500).json({ message: 'Error fetching matches', error: error.message });
   }
 });
+
+//france
 
 async function getStatisticsFrance() {
   try {
