@@ -1,6 +1,8 @@
 const playerProfileSchema = require("./../schemas/player_profile");
 const playerWithTeam = require("./../schemas/playerWithTeam")
 const PlayerName = require("./../schemas/player_names")
+const Player = require("./../schemas/fifa_rename")
+
 const PlayerProfile = require('../schemas/player_profile')
 const User = require('../schemas/user_model')
 async function getPlayers(req , res) {
@@ -79,7 +81,7 @@ async function getPlayerWithTeam(req, res){
   const pageSize = 40; // Keeping it consistent
   const skip = pageNumber * pageSize; 
   try{
-    const result = await playerWithTeam.find({}).populate("player").populate("team").skip(skip)
+    const result = await Player.find({}).populate("player").populate("team").skip(skip)
     .limit(pageSize).exec()
    
    return res.status(200).json(result)
