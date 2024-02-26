@@ -73,7 +73,6 @@ async function getPlayers(req , res) {
       res.status(500).json({ error: 'Internal server error' });
     } }
 
-
 async function getPlayerWithTeam(req, res){
   
   const pageNumber = req.query.page ? parseInt(req.query.page) : 0; // Default to the first page if not provided
@@ -81,7 +80,7 @@ async function getPlayerWithTeam(req, res){
   const pageSize = 40; // Keeping it consistent
   const skip = pageNumber * pageSize; 
   try{
-    const result = await Player.find({}).populate("player").populate("team").skip(skip)
+    const result = await Player.find({})
     .limit(pageSize).exec()
    
    return res.status(200).json(result)
