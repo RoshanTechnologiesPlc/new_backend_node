@@ -285,7 +285,7 @@ app.get("/favPlayers", async (req, res) => {
     playerslist = []
 
     for(let i = 1 ; i < idsArray.length ; i ++){
-      player = await allPlayers.findOne({playerId : idsArray[i]}).populate("stats");  
+      player = await Player.findOne({playerId : idsArray[i]}).populate("stats");  
   
       playerslist.push(player)
     }
