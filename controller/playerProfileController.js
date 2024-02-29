@@ -66,7 +66,7 @@ async function getPlayers(req , res) {
           }] 
       }).populate( "birthCountry").populate("nationality").populate('player')
       .exec() 
-    
+         console.log("this is the reponse part",playerslist);
       return res.status(200).json(playerslist); 
     } catch (error) {
       console.log(error)
