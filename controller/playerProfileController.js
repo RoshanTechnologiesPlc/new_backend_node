@@ -53,7 +53,7 @@ async function getPlayers(req , res) {
         return res.status(401).json({"error" : "user not found"})
       }
       const idsArray = user.favouritePlayers;
-    
+        console.log("incoming request for",idsArray);
      let playerslist = await playerProfileSchema.find({id :{ $in: idsArray }}).populate({
           path: 'statistics',
           model: 'PlayerStatistics', 
