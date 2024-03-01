@@ -669,3 +669,26 @@ app.get('/api/playersget', async (req, res) => {
 });
 
 
+async function gettransfer() {
+  try {
+     console.log('Finding ...');
+     const stat = await Transfer.find({}); 
+     console.log(stat);
+     playersCache = stat; // Store the fetched data in cache
+     return stat;
+   } catch (error) {
+     console.error('Error fetching players:', error.message);
+     throw error;
+   }
+ }
+ 
+ app.get('/api/Transfersfetch', async (req, res) => {
+   try {
+     const players = await gettransfer();
+     res.json(players); 
+     console.log(players);
+   } catch (error) {
+     res.status(500).json({ message: 'Error fetching players', error: error.message });
+   }
+ });
+ 
