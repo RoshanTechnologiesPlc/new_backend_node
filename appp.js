@@ -644,19 +644,20 @@ app.get('/api/teamlistSouthAf', async (req, res) => {
   }
 });
 
+
 async function getPlayers() {
-  try {
+ try {
     console.log('Finding ...');
-    const stat = await Fifanew.find({}); 
+    const stat = await Player.find({}); 
     console.log(stat);
-    return stat; // Directly return the fetched data without storing it in cache
+    playersCache = stat; // Store the fetched data in cache
+    return stat;
   } catch (error) {
     console.error('Error fetching players:', error.message);
     throw error;
   }
 }
 
-// Route handler to respond to GET requests on '/api/playersget'
 app.get('/api/playersget', async (req, res) => {
   try {
     const players = await getPlayers();
