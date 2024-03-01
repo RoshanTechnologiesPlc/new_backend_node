@@ -14,6 +14,7 @@ const lineup = require("./schemas/lineup_schema")
 const allPlayers = require("./models/allPlayer")
 const FixtureEvent = require("./schemas/event_schema")
 const Player = require("./schemas/fifa_rename")
+const Fifanew = require("./schemas/fifa_model")
 const path = require("path"); 
 const bodyParser = require("body-parser");
 const Matches = require("./schemas/match_schema")
@@ -643,8 +644,6 @@ app.get('/api/teamlistSouthAf', async (req, res) => {
   }
 });
 
-let playersCache = null; // Cache to store the players data
-
 async function getPlayers() {
 
   if (playersCache !== null) {
@@ -654,7 +653,7 @@ async function getPlayers() {
   
   try {
     console.log('Finding ...');
-    const stat = await Player.find({}); 
+    const stat = await Fifanew.find({}); 
     console.log(stat);
     playersCache = stat; // Store the fetched data in cache
     return stat;
