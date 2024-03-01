@@ -645,24 +645,18 @@ app.get('/api/teamlistSouthAf', async (req, res) => {
 });
 
 async function getPlayers() {
-
-  if (playersCache !== null) {
-    console.log('Returning cached players data');
-    return playersCache;
-  }
-  
   try {
     console.log('Finding ...');
     const stat = await Fifanew.find({}); 
     console.log(stat);
-    playersCache = stat; // Store the fetched data in cache
-    return stat;
+    return stat; // Directly return the fetched data without storing it in cache
   } catch (error) {
     console.error('Error fetching players:', error.message);
     throw error;
   }
 }
 
+// Route handler to respond to GET requests on '/api/playersget'
 app.get('/api/playersget', async (req, res) => {
   try {
     const players = await getPlayers();
@@ -672,4 +666,5 @@ app.get('/api/playersget', async (req, res) => {
     res.status(500).json({ message: 'Error fetching players', error: error.message });
   }
 });
+
 
