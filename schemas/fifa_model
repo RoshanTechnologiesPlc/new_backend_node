@@ -137,7 +137,7 @@ const playerSchema = new mongoose.Schema({
     tigrignaName: String,
     somaliName:String,
     englishName:String,
-    photo: { type: String, required: false },
+    logo: { type: String, required: false },
 
   },
 });
