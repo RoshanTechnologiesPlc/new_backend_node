@@ -650,7 +650,7 @@ async function getPlayers() {
     console.log('Finding ...');
     const stat = await Fifanew.find({}); 
     console.log(stat);
-    playersCache = stat; // Store the fetched data in cache
+
     return stat;
   } catch (error) {
     console.error('Error fetching players:', error.message);
