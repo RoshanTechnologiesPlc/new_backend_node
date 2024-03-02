@@ -5,7 +5,7 @@ async function fetchFixture(leagueId) {
   const config = {
     method: 'GET',
     url: 'https://v3.football.api-sports.io/fixtures',
-    params: { league: `${leagueId}`, season: "2022" },
+    params: { league: `${leagueId}`, season: "2023" },
     headers: {
         
       'x-rapidapi-key': '1d8b97a2a806716a1f50c53d5ca840fd'
