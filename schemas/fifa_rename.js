@@ -33,6 +33,6 @@ const playerSchema = new mongoose.Schema({
   teamLogo:{type: String, required: true }
 });
 
-const Player = mongoose.model('Player_rating', playerSchema);
+const Player = mongoose.model('old_Player_rating', playerSchema);
 
 module.exports = Player;
