@@ -647,7 +647,7 @@ app.get('/api/teamlistSouthAf', async (req, res) => {
 async function getPlayers() {
   try {
     console.log('Finding ...');
-    const stat = await Fifamodel.find({}).limit(100); 
+    const stat = await Fifamodel.find({}).limit(1000); 
     console.log(stat);
 
     return stat;
