@@ -645,9 +645,9 @@ app.get('/api/teamlistSouthAf', async (req, res) => {
 });
 
 async function getPlayers() {
- try {
+  try {
     console.log('Finding ...');
-    const stat = await Fifamodel.find({}); 
+    const stat = await Fifamodel.find({}).limit(100); 
     console.log(stat);
 
     return stat;
@@ -666,6 +666,7 @@ app.get('/api/playersget', async (req, res) => {
     res.status(500).json({ message: 'Error fetching players', error: error.message });
   }
 });
+
 
 
 async function gettransfer() {
