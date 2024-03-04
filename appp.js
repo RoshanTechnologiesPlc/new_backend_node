@@ -667,28 +667,32 @@ app.get('/api/playersget', async (req, res) => {
   }
 });
 
-
-
-async function gettransfer() {
+async function gettransfer(page = 1, limit = 10) { 
   try {
-     console.log('Finding ...');
-     const stat = await Transfer.find({}); 
-     console.log(stat);
-     playersCache = stat; // Store the fetched data in cache
-     return stat;
-   } catch (error) {
-     console.error('Error fetching players:', error.message);
-     throw error;
-   }
- }
+    console.log('Finding ...');
+    const skip = (page - 1) * limit;
+    const stat = await Transfer.find({}).skip(skip).limit(limit); 
+    console.log(stat);
+    playersCache = stat; // Store the fetched data in cache
+    return stat;
+  } catch (error) {
+    console.error('Error fetching players:', error.message);
+    throw error;
+  }
+}
+
  
  app.get('/api/Transfersfetch', async (req, res) => {
-   try {
-     const players = await gettransfer();
-     res.json(players); 
-     console.log(players);
-   } catch (error) {
-     res.status(500).json({ message: 'Error fetching players', error: error.message });
-   }
- });
- 
+  
+  const page = parseInt(req.query.page) || 1; 
+  const limit = parseInt(req.query.limit) || 10; 
+
+  try {
+    const players = await gettransfer(page, limit);
+    res.json(players);
+    console.log(players);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching players', error: error.message });
+  }
+});
+
