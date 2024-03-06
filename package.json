@@ -20,6 +20,7 @@
     "@google-cloud/translate": "^7.2.1",
     "agenda": "^5.0.0",
     "axios": "^1.6.5",
+"axios-retry": "^4.0.0",
     "body-parser": "^1.20.2",
     "cheerio": "^1.0.0-rc.12",
     "child_process": "^1.0.2",
