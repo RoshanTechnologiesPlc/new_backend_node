@@ -12,7 +12,7 @@ const notifyUserIfFavoritePodcastIsLive = require('./socket/podcast_notifier')
 const getTransferRssFeed = require("./rss_json/transfer")
 const initializeFunctions = require("./functions/initialization_functions/initialize_functions")
 const fetchAndStoreSummary = require("./newsAi/webScrapping/news_logic")
-const MONGO_URL = 'mongodb+srv://abubekersiraj:Mongodbpassword1234@test.zezynu2.mongodb.net/?retryWrites=true&w=majority';
+const url = 'mongodb+srv://abubekersiraj:Mongodbpassword1234@test.zezynu2.mongodb.net/?retryWrites=true&w=majority';
 
 require("dotenv").config();
 
@@ -84,7 +84,5 @@ async function startServer() {
 
 }
 
-
- 
 
  
