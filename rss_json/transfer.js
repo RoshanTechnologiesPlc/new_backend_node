@@ -5,13 +5,11 @@ const Transfer = require("../schemas/transfer");
 const mongoose = require ("mongoose"); 
 const url = 'mongodb+srv://abubekersiraj:Mongodbpassword1234@test.zezynu2.mongodb.net/?retryWrites=true&w=majority'; 
 const cheerio = require('cheerio'); 
-const axiosRetry = require('axios-retry');
-
 
 
 mongoose.connect(url).then(() => { 
  console.log("Connected to the database"); 
- savePlayersDataToMongo();
+ getPlayersData()  
 } 
 ).catch((error) => { 
   console.log("Error connecting to the database", error.message); 
@@ -31,36 +29,41 @@ const formatCurrency = (value) => {
     } 
     return parseFloat(result) || "0M€"; // Ensure even zero values are represented consistently 
 }; 
-async function isPlayerNameExists(englishNamePlayer) {
-  const playerExists = await Transfer.findOne({"playerName.EnglishName": englishNamePlayer});
-  return !!playerExists; // Returns true if the player exists, false otherwise
-}
  
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+  }
 const getPlayerData = async (elem, $) => { 
     // Assume 'elem' is an element in the page corresponding to a player 
-    const cells = $(elem).find('td');
+    const cells = $(elem).find('td'); 
     const englishNamePlayer = formatText($(cells[1]).find('img').attr('title'));
-
-    if (await isPlayerNameExists(englishNamePlayer)) {
-      console.log(`Skipping ${englishNamePlayer}, already exists.`);
-      return null; // Return null to indicate that no new data should be processed for this player
-    }
-
-    const englishNameFromClub = formatText($(cells[9]).find('img').attr('title')  || 'Without club'); 
-    const englishNameToClub = formatText($(cells[13]).find('img').attr('title') || 'Without club'); 
     
-    // Perform transliteration for playerName 
-    const playerNametransliterate = await transliteratePlayers(englishNamePlayer); 
+const fetchname = await Transfer.findOne({'playerName.EnglishName': englishNamePlayer});
 
-     
-    const fromClubNametransliterate = await transliteratePlayers(englishNameFromClub); 
+if(fetchname){
+    console.log("Player already exists");
+    
+}
+else {
+    console.log()
 
- 
-    // Perform transliteration for toClubName 
-    const toClubNametransliterate = await transliteratePlayers(englishNameToClub); 
 
-   
-     
+    const englishNameFromClub = formatText($(cells[9]).find('img').attr('title')); 
+    const englishNameToClub = formatText($(cells[13]).find('img').attr('title') ); 
+// Perform transliteration for playerName 
+const playerNametransliterate = await transliteratePlayers(englishNamePlayer); 
+
+// Wait for 2 seconds (2000 milliseconds) before proceeding to the next transliteration
+await delay(5000);
+
+const fromClubNametransliterate = await transliteratePlayers(englishNameFromClub); 
+
+// Wait for another 2 seconds before proceeding to the next transliteration
+await delay(5000);
+
+// Perform transliteration for toClubName 
+const toClubNametransliterate = await transliteratePlayers(englishNameToClub);
+
     const playerData = { 
     
         fromClubName: { 
@@ -87,8 +90,11 @@ const getPlayerData = async (elem, $) => {
         transferAmount: formatCurrency($(cells[16]).text()), 
     }; 
     return playerData; 
-}; 
 
+}
+}; 
+ 
+ 
 const getPlayersData = async (pages) => { 
     let playersData = []; 
     for (let page = 1; page <= pages; page++) {
@@ -114,7 +120,7 @@ const headers = {
  
 const savePlayersDataToMongo = async () => { 
     try { 
-      const playersData = await getPlayersData(1); // Fetch the player data
+      const playersData = await getPlayersData(); // Fetch the player data
       let lastIndex = await Transfer.find().sort({index: -1}).limit(1).then(docs => docs[0] ? docs[0].index : 0); // Find the last index used
       for (let playerData of playersData) {
         lastIndex++; // Increment the index for each new document
@@ -127,3 +133,8 @@ const savePlayersDataToMongo = async () => {
     } 
 }; 
 
+ 
+getPlayersData(2) 
+  .then(savePlayersDataToMongo) 
+  .then(() => console.log('Finished scraping and saving player data.')) 
+  .catch(console.error);
