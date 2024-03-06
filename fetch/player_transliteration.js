@@ -2,7 +2,7 @@ const axios = require('axios');
 async function transliteratePlayers(playerName) {
    
 const OPENAI_API_ENDPOINT = "https://api.openai.com/v1/chat/completions";
-const OPENAI_API_KEY = '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';
+const OPENAI_API_KEY = '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';
     try {
         const response = await axios.post(OPENAI_API_ENDPOINT,
          {
