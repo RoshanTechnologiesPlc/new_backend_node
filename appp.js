@@ -14,7 +14,6 @@ const lineup = require("./schemas/lineup_schema")
 const allPlayers = require("./models/allPlayer")
 const FixtureEvent = require("./schemas/event_schema")
 const Player = require("./schemas/fifa_rename")
-const Fifamodel = require("./schemas/fifa_model")
 const path = require("path"); 
 const bodyParser = require("body-parser");
 const Matches = require("./schemas/match_schema")
@@ -72,8 +71,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-// upload.single("photo"),
-  // const image = req.file.filename;
+
 
 
 
@@ -496,9 +494,16 @@ app.get('/api/teamlistEnglish', async (req, res) => {
 
 //france
 
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 async function getStatisticsFrance() {
   try {
     console.log('Finding leagueId=61...');
+    await delay(2000);
     const stat = await statistics.find({ leagueid: 61 ,season:2023  }).lean(); 
     console.log(stat);
     return stat;
@@ -523,6 +528,7 @@ app.get('/api/teamlistFrance', async (req, res) => {
 
 async function getStatisticsSpain() {
   try {
+    await delay(1000);
     console.log('Finding leagueId=140...');
     const stat = await statistics.find({ leagueid: 140 ,season:2023  }).lean(); 
     console.log(stat);
@@ -536,6 +542,7 @@ async function getStatisticsSpain() {
 
 app.get('/api/teamlistSpain', async (req, res) => {
   try {
+    
     const matches = await getStatisticsSpain();
     res.json(matches); 
     console.log(matches);
@@ -548,6 +555,8 @@ app.get('/api/teamlistSpain', async (req, res) => {
 
 async function getStatisticsItaly() {
   try {
+    await delay(3000);
+
     console.log('Finding leagueId=135...');
     const stat = await statistics.find({ leagueid: 135 ,season:2023  }).lean(); 
     console.log(stat);
@@ -573,6 +582,7 @@ app.get('/api/teamlistItaly', async (req, res) => {
 
 async function getStatisticsGermany() {
   try {
+    await delay(4000);
     console.log('Finding leagueId=78...');
     const stat = await statistics.find({ leagueid: 78 ,season:2023  }).lean(); 
     console.log(stat);
@@ -598,6 +608,7 @@ app.get('/api/teamlistGermany', async (req, res) => {
 
 async function getStatisticsSaudi() {
   try {
+    await delay(5000);
     console.log('Finding leagueId=135...');
     const stat = await statistics.find({ leagueid: 307 ,season:2023  }).lean(); 
     console.log(stat);
@@ -644,55 +655,27 @@ app.get('/api/teamlistSouthAf', async (req, res) => {
   }
 });
 
-async function getPlayers() {
+
+async function gettransfer() {
   try {
-    console.log('Finding ...');
-    const stat = await Fifamodel.find({}).limit(500); 
-    console.log(stat);
-
-    return stat;
-  } catch (error) {
-    console.error('Error fetching players:', error.message);
-    throw error;
-  }
-}
-
-app.get('/api/playersget', async (req, res) => {
-  try {
-    const players = await getPlayers();
-    res.json(players); 
-    console.log(players);
-  } catch (error) {
-    res.status(500).json({ message: 'Error fetching players', error: error.message });
-  }
-});
-
-async function gettransfer(page = 1, limit = 10) { 
-  try {
-    console.log('Finding ...');
-    const skip = (page - 1) * limit;
-    const stat = await Transfer.find({}).skip(skip).limit(limit); 
-    console.log(stat);
-    playersCache = stat; // Store the fetched data in cache
-    return stat;
-  } catch (error) {
-    console.error('Error fetching players:', error.message);
-    throw error;
-  }
-}
-
+     console.log('Finding ...');
+     const stat = await Transfer.find({}); 
+     console.log(stat);
+     playersCache = stat; // Store the fetched data in cache
+     return stat;
+   } catch (error) {
+     console.error('Error fetching players:', error.message);
+     throw error;
+   }
+ }
  
  app.get('/api/Transfersfetch', async (req, res) => {
-  
-  const page = parseInt(req.query.page) || 1; 
-  const limit = parseInt(req.query.limit) || 10; 
-
-  try {
-    const players = await gettransfer(page, limit);
-    res.json(players);
-    console.log(players);
-  } catch (error) {
-    res.status(500).json({ message: 'Error fetching players', error: error.message });
-  }
-});
-
+   try {
+     const players = await gettransfer();
+     res.json(players); 
+     console.log(players);
+   } catch (error) {
+     res.status(500).json({ message: 'Error fetching players', error: error.message });
+   }
+ });
+ 
