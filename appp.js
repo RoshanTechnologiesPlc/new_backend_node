@@ -642,7 +642,32 @@ app.get('/api/teamlistSouthAf', async (req, res) => {
   }
 });
 
+async function getPlayers() {
+ try {
+    console.log('Finding ...');
+    const stat = await Player.find({}); 
+    console.log(stat);
+    playersCache = stat; // Store the fetched data in cache
+    return stat;
+  } catch (error) {
+    console.error('Error fetching players:', error.message);
+    throw error;
+  }
+}
 
+
+
+
+
+app.get('/api/playersget', async (req, res) => {
+  try {
+    const players = await getPlayers();
+    res.json(players); 
+    console.log(players);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching players', error: error.message });
+  }
+});
 
 
 async function gettransfer() {
