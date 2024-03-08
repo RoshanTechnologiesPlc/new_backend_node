@@ -470,11 +470,10 @@ app.get('/api/teamlist', async (req, res) => {
 });
 
 
-
 async function getStatisticsEnglish() {
   try {
     console.log('Finding leagueId=39...');
-    const stat = await statistics.find({ leagueid: 39 ,season:2023  }).lean(); 
+    const stat = await statistics.find({ leagueid: 39 ,season:2023  }).sort({ rank: 1 }).lean();
     console.log(stat);
     return stat;
   } catch (error) {
@@ -501,7 +500,7 @@ async function getStatisticsFrance() {
   try {
  
     console.log('Finding leagueId=61...');
-    const stat = await statistics.find({ leagueid: 61 ,season:2023  }).lean(); 
+    const stat = await statistics.find({ leagueid: 61 ,season:2023  }).sort({ rank: 1 }).lean();
     console.log(stat);
     return stat;
   } catch (error) {
@@ -528,7 +527,7 @@ async function getStatisticsSpain() {
   try {
    
     console.log('Finding leagueId=140...');
-    const stat = await statistics.find({ leagueid: 140 ,season:2023  }).lean(); 
+    const stat = await statistics.find({ leagueid: 140 ,season:2023  }).sort({ rank: 1 }).lean();
     console.log(stat);
     return stat;
   } catch (error) {
@@ -555,7 +554,7 @@ async function getStatisticsItaly() {
   try {
 
     console.log('Finding leagueId=135...');
-    const stat = await statistics.find({ leagueid: 135 ,season:2023  }).lean(); 
+    const stat = await statistics.find({ leagueid: 135 ,season:2023  }).sort({ rank: 1 }).lean();
     console.log(stat);
     return stat;
   } catch (error) {
@@ -582,7 +581,7 @@ async function getStatisticsGermany() {
   try {
    
     console.log('Finding leagueId=78...');
-    const stat = await statistics.find({ leagueid: 78 ,season:2023  }).lean(); 
+    const stat = await statistics.find({ leagueid: 78 ,season:2023  }).sort({ rank: 1 }).lean();
     console.log(stat);
     return stat;
   } catch (error) {
@@ -608,7 +607,7 @@ app.get('/api/teamlistGermany', async (req, res) => {
 async function getStatisticsSaudi() {
   try {
     console.log('Finding leagueId=135...');
-    const stat = await statistics.find({ leagueid: 307 ,season:2023  }).lean(); 
+    const stat = await statistics.find({ leagueid: 307 ,season:2023  }).sort({ rank: 1 }).lean();
     console.log(stat);
     return stat;
   } catch (error) {
@@ -634,7 +633,7 @@ app.get('/api/teamlistSaudi', async (req, res) => {
 async function getStatisticsSouthAf() {
   try {
     console.log('Finding leagueId=135...');
-    const stat = await statistics.find({ leagueid: 288 ,season:2023  }).lean(); 
+    const stat = await statistics.find({ leagueid: 288 ,season:2023  }).sort({ rank: 1 }).lean();
     console.log(stat);
     return stat;
   } catch (error) {
