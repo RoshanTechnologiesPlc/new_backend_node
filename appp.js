@@ -654,11 +654,13 @@ app.get('/api/teamlistSouthAf', async (req, res) => {
   }
 });
 
-async function getPlayers() {
+async function getPlayers(pageNumber = 1, pageSize = 20) {
   try {
     console.log('Finding ...');
-    // Use .limit() to restrict the number of documents to 250
-    const players = await Player.find({}).limit(60);
+    // Calculate the number of documents to skip
+    const skip = (pageNumber - 1) * pageSize;
+    // Use .skip() and .limit() for pagination
+    const players = await Player.find({}).skip(skip).limit(pageSize);
     console.log(players);
     // Assuming playersCache is defined somewhere in your scope
     playersCache = players; // Store the fetched data in cache
@@ -668,11 +670,14 @@ async function getPlayers() {
     throw error;
   }
 }
-
-
 app.get('/api/playersget', async (req, res) => {
   try {
-    const players = await getPlayers();
+    // Extract pageNumber and pageSize from query parameters
+    // Provide default values if not specified
+    const pageNumber = parseInt(req.query.pageNumber) || 1;
+    const pageSize = parseInt(req.query.pageSize) || 20;
+
+    const players = await getPlayers(pageNumber, pageSize);
     res.json(players); 
     console.log(players);
   } catch (error) {
