@@ -435,14 +435,19 @@ async function getListofMatches() {
   }
 }
 
-
 app.get('/api/matches', async (req, res) => {
+  // Extract page and pageSize from query parameters
+  // Provide default values if not specified
+  const page = parseInt(req.query.page) || 1;
+  const pageSize = parseInt(req.query.pageSize) || 2;
+
   try {
-    const matches = await getListofMatches();
-    res.json(matches); 
-    console.log(matches);
+    const matches = await getListofMatches(); // Assuming this is unrelated to getStatistics and should remain as is
+    const stats = await getStatistics(page, pageSize); // Fetch statistics with pagination
+    res.json({ matches, stats }); // You might want to adjust this based on your actual requirements
+    console.log(matches, stats);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching matches', error: error.message });
+    res.status(500).json({ message: 'Error fetching data', error: error.message });
   }
 });
 
