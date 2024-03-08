@@ -13,7 +13,8 @@ const apiRoute = require("./routes/apiRouter");
 const lineup = require("./schemas/lineup_schema")
 const allPlayers = require("./models/allPlayer")
 const FixtureEvent = require("./schemas/event_schema")
-const Player = require("./schemas/fifa_model")
+// const Player = require("./schemas/fifa_rename")
+const Player = require("./schemas/fifa_model");
 const path = require("path"); 
 const bodyParser = require("body-parser");
 const Matches = require("./schemas/match_schema")
@@ -484,6 +485,7 @@ async function getStatisticsEnglish() {
 
 app.get('/api/teamlistEnglish', async (req, res) => {
   try {
+    
     const matches = await getStatisticsEnglish();
     res.json(matches); 
     console.log(matches);
@@ -496,6 +498,7 @@ app.get('/api/teamlistEnglish', async (req, res) => {
 
 async function getStatisticsFrance() {
   try {
+ 
     console.log('Finding leagueId=61...');
     const stat = await statistics.find({ leagueid: 61 ,season:2023  }).lean(); 
     console.log(stat);
@@ -509,6 +512,7 @@ async function getStatisticsFrance() {
 
 app.get('/api/teamlistFrance', async (req, res) => {
   try {
+    await delay(2000)
     const matches = await getStatisticsFrance();
     res.json(matches); 
     console.log(matches);
@@ -521,6 +525,7 @@ app.get('/api/teamlistFrance', async (req, res) => {
 
 async function getStatisticsSpain() {
   try {
+   
     console.log('Finding leagueId=140...');
     const stat = await statistics.find({ leagueid: 140 ,season:2023  }).lean(); 
     console.log(stat);
@@ -534,6 +539,7 @@ async function getStatisticsSpain() {
 
 app.get('/api/teamlistSpain', async (req, res) => {
   try {
+
     const matches = await getStatisticsSpain();
     res.json(matches); 
     console.log(matches);
@@ -546,6 +552,7 @@ app.get('/api/teamlistSpain', async (req, res) => {
 
 async function getStatisticsItaly() {
   try {
+
     console.log('Finding leagueId=135...');
     const stat = await statistics.find({ leagueid: 135 ,season:2023  }).lean(); 
     console.log(stat);
@@ -559,6 +566,7 @@ async function getStatisticsItaly() {
 
 app.get('/api/teamlistItaly', async (req, res) => {
   try {
+    await delay(2000)
     const matches = await getStatisticsItaly();
     res.json(matches); 
     console.log(matches);
@@ -571,6 +579,7 @@ app.get('/api/teamlistItaly', async (req, res) => {
 
 async function getStatisticsGermany() {
   try {
+   
     console.log('Finding leagueId=78...');
     const stat = await statistics.find({ leagueid: 78 ,season:2023  }).lean(); 
     console.log(stat);
@@ -584,6 +593,7 @@ async function getStatisticsGermany() {
 
 app.get('/api/teamlistGermany', async (req, res) => {
   try {
+    await delay(2000)
     const matches = await getStatisticsGermany();
     res.json(matches); 
     console.log(matches);
@@ -609,6 +619,7 @@ async function getStatisticsSaudi() {
 
 app.get('/api/teamlistSaudi', async (req, res) => {
   try {
+    await delay(3000)
     const matches = await getStatisticsSaudi();
     res.json(matches); 
     console.log(matches);
@@ -634,6 +645,7 @@ async function getStatisticsSouthAf() {
 
 app.get('/api/teamlistSouthAf', async (req, res) => {
   try {
+    await delay(3000)
     const matches = await getStatisticsSouthAf();
     res.json(matches); 
     console.log(matches);
@@ -656,10 +668,6 @@ async function getPlayers() {
     throw error;
   }
 }
-
-
-
-
 
 
 app.get('/api/playersget', async (req, res) => {
@@ -696,3 +704,7 @@ async function gettransfer() {
    }
  });
  
+
+ function delay(timeInMillis) {
+  return new Promise(resolve => setTimeout(resolve, timeInMillis));
+}
