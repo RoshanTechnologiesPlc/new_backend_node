@@ -1,10 +1,25 @@
 const axios = require('axios');
 // const League = require("../leagues");
+const mongoose=require('mongoose');
 const teamStatistics = require("../schemas/team_statistics")
 const LeagueStatistics = require("../schemas/league_statistics")
 const StandingSchema = require("../schemas/standings")
 const TeamDataSchema = require("../schemas/team_data")
 const transliterateToAmharic = require("../fetch/team_transliteration")
+
+const url = 'mongodb+srv://abubekersiraj:Mongodbpassword1234@test.zezynu2.mongodb.net/?retryWrites=true&w=majority';
+
+
+
+mongoose.connect(url)
+  .then(() => {
+
+    fetchStandingNew(39,2023);
+//    
+  })
+  .catch(err => {
+    console.error(`Error connecting to the database: ${err}`);
+  });
 
 require('dotenv').config()
 
@@ -113,7 +128,7 @@ async function fetchStandingNew(leagueId, season){
   teamInfo = {
      id: standingData.team.id,
   englishName: standingData.team.name, 
-  logo: standingData.team.logo,
+
   }
    teamObject = await transliterateToAmharic(teamInfo)
   }
@@ -125,7 +140,6 @@ async function fetchStandingNew(leagueId, season){
   if (teamObject == false) {
     teamObject = {
       id: standingData.team.id,
-      logo : standingData.team.logo ,
       AmharicName : standingData.team.name,
       EnglishName  : standingData.team.name , 
       OromoName : standingData.team.name ,
@@ -135,7 +149,7 @@ async function fetchStandingNew(leagueId, season){
     }
   } else {
     teamObject.id = standingData.team.id
-    teamObject.logo = standingData.team.logo
+
     teamObject.translated = true
    
   }
@@ -187,7 +201,7 @@ async function fetchStandingNew(leagueId, season){
 
 
 
-  // console.log(teamStat)
+  console.log(teamStat)
   // teamStatModel = new teamStatistics(teamStat)
   // teamStatModel.save()
   teamStatModel =  await teamStatistics.findOneAndUpdate({
@@ -249,4 +263,4 @@ async function fetchStandingNew(leagueId, season){
 
      
 
-module.exports = fetchStandingNew
+// module.exports = fetchStandingNew
