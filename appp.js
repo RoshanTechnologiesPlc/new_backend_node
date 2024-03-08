@@ -675,7 +675,7 @@ app.get('/api/playersget', async (req, res) => {
     // Extract pageNumber and pageSize from query parameters
     // Provide default values if not specified
     const pageNumber = parseInt(req.query.pageNumber) || 1;
-    const pageSize = parseInt(req.query.pageSize) || 20;
+    const pageSize = parseInt(req.query.pageSize) || 40;
 
     const players = await getPlayers(pageNumber, pageSize);
     res.json(players); 
