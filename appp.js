@@ -450,7 +450,7 @@ async function getStatistics() {
   try {
     console.log('Finding leagueId=363...');
     // Assuming 'rank' is the field you want to sort by in descending order
-    const stat = await statistics.find({ leagueid: 363, season: 2023 }).sort({ rank: -1 }).lean();
+    const stat = await statistics.find({ leagueid: 363, season: 2023 }).sort({ rank: 1 }).lean();
     console.log(stat);
     return stat;
   } catch (error) {
