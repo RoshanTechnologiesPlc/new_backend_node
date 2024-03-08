@@ -658,7 +658,7 @@ async function getPlayers() {
   try {
     console.log('Finding ...');
     // Use .limit() to restrict the number of documents to 250
-    const players = await Player.find({}).limit(250);
+    const players = await Player.find({}).limit(60);
     console.log(players);
     // Assuming playersCache is defined somewhere in your scope
     playersCache = players; // Store the fetched data in cache
