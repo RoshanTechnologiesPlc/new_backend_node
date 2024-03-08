@@ -449,25 +449,26 @@ app.get('/api/matches', async (req, res) => {
 async function getStatistics() {
   try {
     console.log('Finding leagueId=363...');
-    const stat = await statistics.find({ leagueid: 363 ,season:2023  }).lean(); 
+    // Assuming 'rank' is the field you want to sort by in descending order
+    const stat = await statistics.find({ leagueid: 363, season: 2023 }).sort({ rank: -1 }).lean();
     console.log(stat);
     return stat;
   } catch (error) {
     console.error('Error fetching matches:', error.message);
-    throw error; 
+    throw error;
   }
 }
-
 
 app.get('/api/teamlist', async (req, res) => {
   try {
     const matches = await getStatistics();
-    res.json(matches); 
+    res.json(matches);
     console.log(matches);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching matches', error: error.message });
   }
 });
+
 
 
 async function getStatisticsEnglish() {
