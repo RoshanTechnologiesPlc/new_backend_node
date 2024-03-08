@@ -654,7 +654,7 @@ app.get('/api/teamlistSouthAf', async (req, res) => {
   }
 });
 
-async function getPlayers(pageNumber = 1, pageSize = 20) {
+async function getPlayers(pageNumber = 1, pageSize = 40) {
   try {
     console.log('Finding ...');
     // Calculate the number of documents to skip
