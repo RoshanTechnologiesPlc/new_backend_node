@@ -496,31 +496,11 @@ app.get('/api/teamlistEnglish', async (req, res) => {
 
 //france
 
-
-app.get('/api/teamlistFrance', async (req, res) => {
+async function getStatisticsFrance() {
   try {
-    await delay(3000); // Simulating network delay
-
-    const pageNumber = parseInt(req.query.pageNumber) || 1;
-    const pageSize = parseInt(req.query.pageSize) || 8; // Defaulting to 8 items per page
-
-    const matches = await getStatisticsFrance(pageNumber, pageSize);
-    res.json(matches);
-    console.log(matches);
-  } catch (error) {
-    res.status(500).json({ message: 'Error fetching matches', error: error.message });
-  }
-});
-
-async function getStatisticsFrance(pageNumber = 1, pageSize = 8) {
-  try {
-    console.log('Finding leagueId=135...');
-    const skip = (pageNumber - 1) * pageSize;
-    const stat = await statistics.find({ leagueid: 61, season: 2023 })
-                                 .sort({ rank: 1 })
-                                 .skip(skip)
-                                 .limit(pageSize)
-                                 .lean();
+ 
+    console.log('Finding leagueId=61...');
+    const stat = await statistics.find({ leagueid: 61 ,season:2023  }).sort({ rank: 1 }).lean();
     console.log(stat);
     return stat;
   } catch (error) {
@@ -528,6 +508,19 @@ async function getStatisticsFrance(pageNumber = 1, pageSize = 8) {
     throw error; 
   }
 }
+
+
+app.get('/api/teamlistFrance', async (req, res) => {
+  try {
+    await delay(2000)
+    const matches = await getStatisticsFrance();
+    res.json(matches); 
+    console.log(matches);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching matches', error: error.message });
+  }
+});
+
 
 
 //spain
