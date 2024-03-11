@@ -6,21 +6,6 @@ const LeagueStatistics = require("../schemas/league_statistics")
 const StandingSchema = require("../schemas/standings")
 const TeamDataSchema = require("../schemas/team_data")
 const transliterateToAmharic = require("../fetch/team_transliteration")
-
-const url = 'mongodb+srv://abubekersiraj:Mongodbpassword1234@test.zezynu2.mongodb.net/?retryWrites=true&w=majority';
-
-
-
-mongoose.connect(url)
-  .then(() => {
-
-    fetchStandingNew(39,2023);
-//    
-  })
-  .catch(err => {
-    console.error(`Error connecting to the database: ${err}`);
-  });
-
 require('dotenv').config()
 
 async function fetchStandingNew(leagueId, season){
@@ -263,4 +248,4 @@ async function fetchStandingNew(leagueId, season){
 
      
 
-// module.exports = fetchStandingNew
+ module.exports = fetchStandingNew
