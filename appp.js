@@ -451,32 +451,29 @@ app.get('/api/matches', async (req, res) => {
   }
 });
 
-app.get('/api/teamlist', async (req, res) => {
-
-  const pageSize = parseInt(req.query.pageSize, 10) || 2;
-  const page = parseInt(req.query.page, 10) || 1;
-
+async function getStatistics() {
   try {
-    console.log(`Fetching page ${page} with pageSize ${pageSize} for leagueId=363...`);
+    console.log('Finding leagueId=363...');
+    // Assuming 'rank' is the field you want to sort by in descending order
+    const stat = await statistics.find({ leagueid: 363, season: 2023 }).sort({ rank: 1 }).lean();
+    console.log(stat);
+    return stat;
+  } catch (error) {
+    console.error('Error fetching matches:', error.message);
+    throw error;
+  }
+}
 
-    // Calculate the number of items to skip based on the current page
-    const skip = (page - 1) * pageSize;
-
-    // Assuming 'rank' is the field you want to sort by in ascending order
-    const matches = await statistics
-      .find({ leagueid: 363, season: 2023 })
-      .sort({ rank: 1 })
-      .skip(skip)
-      .limit(pageSize)
-      .lean();
-
+app.get('/api/teamlist', async (req, res) => {
+  try {
+    const matches = await getStatistics();
     res.json(matches);
     console.log(matches);
   } catch (error) {
-    console.error('Error fetching matches:', error.message);
     res.status(500).json({ message: 'Error fetching matches', error: error.message });
   }
 });
+
 
 
 async function getStatisticsEnglish() {
