@@ -1,5 +1,6 @@
 const Team = require("../schemas/team_schema");
 const Match = require("../schemas/match_schema");
+const axios = require("axios");
 
 async function fetchFixture(leagueId) {
   const config = {
