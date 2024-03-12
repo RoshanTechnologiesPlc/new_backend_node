@@ -419,21 +419,43 @@ app.get("/event/:fixtureId" , async(req, res)=>{
 module.exports= app
 async function getListofMatches() {
   try {
-    console.log('Finding matches with non-null YouTube highlights...');
+    console.log('Finding matches with non-null YouTube highlights and other details...');
     const matches = await Matches.find({
+      'date': { $ne: null },
+      'venue.name': { $ne: null },
+      'status.short': { $ne: null },
+      'league.name': { $ne: null },
+      'league.logo': { $ne: null },
+      'goals.home': { $ne: null },
+      'goals.away': { $ne: null },
+      'homeTeam.EnglishName': { $ne: null },
+      'awayTeam.EnglishName': { $ne: null },
+      'homeTeam.AmharicName': { $ne: null },
+      'homeTeam.OromoName': { $ne: null },
+      'homeTeam.SomaliName': { $ne: null },
+
+      'awayTeam.AmharicName': { $ne: null },
+      'awayTeam.OromoName': { $ne: null },
+      'awayTeam.SomaliName': { $ne: null },
+
       'youtubeHighlight.VideoTitle': { $ne: null },
       'youtubeHighlight.VideoId': { $ne: null },
       'youtubeHighlight.Thumbnail': { $ne: null }
-    }).populate('homeTeam', 'EnglishName AmharicName OromoName SomaliName') 
-    .populate('awayTeam', 'EnglishName AmharicName OromoName SomaliName') .sort({ date: -1 }) .lean(); 
+    })
+    .populate('homeTeam', 'EnglishName AmharicName OromoName SomaliName TigrinyaName') // Adjust according to your schema
+    .populate('awayTeam', 'EnglishName AmharicName OromoName SomaliName TigrinyaName') // Adjust according to your schema
+    .sort({ date: -1 }) 
+    .lean(); 
 
-   console.log(`Found ${matches.goals} matches with valid YouTube highlights.`);
+    console.log(`Found ${matches.length} matches with all required details.`);
     return matches;
   } catch (error) {
     console.error('Error fetching matches:', error.message);
     throw error; 
   }
 }
+
+
 
 app.get('/api/matches', async (req, res) => {
   // Extract page and pageSize from query parameters
