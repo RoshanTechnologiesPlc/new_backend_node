@@ -1,18 +1,16 @@
 const playerProfileSchema = require("./../schemas/player_profile");
 const playerWithTeam = require("./../schemas/playerWithTeam")
 const PlayerName = require("./../schemas/player_names")
-const Player = require("./../schemas/fifa_rename")
+const Player = require("./../schemas/fifa_model")
 
 const PlayerProfile = require('../schemas/player_profile')
 const User = require('../schemas/user_model')
+
+
 async function getPlayers(req , res) {
   
     playerId = +req.query.id;
-    console.log("incoming request for  ...")
-    // console.log(fixture)
-    
-
-    try {
+   try {
       const playerProfile = await playerProfileSchema.findOne({id : playerId}).populate({
         path: 'statistics',
         model: 'PlayerStatistics', // this is the name of the model you've exported
@@ -23,19 +21,19 @@ async function getPlayers(req , res) {
             path: 'league',
             model: 'LeagueName'  // replace with the actual name you've used when exporting the model
         }]
-    }).populate( "birthCountry").populate("nationality").populate('player')
-    .exec()
-      ;
-      console.log(playerProfile)
-      if(playerProfile == null){
-        return res.status(201).json({"error" : "player not found"})
+      }).populate( "birthCountry").populate("nationality").populate('player')
+      .exec()
+        ;
+        console.log(playerProfile)
+        if(playerProfile == null){
+          return res.status(201).json({"error" : "player not found"})
+        }
+        return res.status(200).json(playerProfile);
+      } catch (error) {
+        console.error('Error retrieving line ups:', error);
+        return res.status(502).json({"error" : "error"});
+        // throw error;
       }
-      return res.status(200).json(playerProfile);
-    } catch (error) {
-      console.error('Error retrieving line ups:', error);
-      return res.status(502).json({"error" : "error"});
-      // throw error;
-    }
 
     
   }
@@ -53,8 +51,8 @@ async function getPlayers(req , res) {
         return res.status(401).json({"error" : "user not found"})
       }
       const idsArray = user.favouritePlayers;
-        console.log("incoming request for",idsArray);
-     let playerslist = await playerProfileSchema.find({id :{ $in: idsArray }}).populate({
+    console.log("incoming request for",idsArray);
+     let playerslist = await playerProfileSchema.find({id :{ $in: idsArray }}).populate({ 
           path: 'statistics',
           model: 'PlayerStatistics', 
           populate: [{
@@ -66,12 +64,15 @@ async function getPlayers(req , res) {
           }] 
       }).populate( "birthCountry").populate("nationality").populate('player')
       .exec() 
-         console.log("this is the reponse part",playerslist);
+
+      console.log("this is the reponse part",playerslist)
+    
       return res.status(200).json(playerslist); 
     } catch (error) {
       console.log(error)
       res.status(500).json({ error: 'Internal server error' });
     } }
+
 
 async function getPlayerWithTeam(req, res){
   
@@ -80,7 +81,7 @@ async function getPlayerWithTeam(req, res){
   const pageSize = 40; // Keeping it consistent
   const skip = pageNumber * pageSize; 
   try{
-    const result = await Player.find({})
+    const result = await playerWithTeam.find({}).populate("player").populate("team").skip(skip)
     .limit(pageSize).exec()
    
    return res.status(200).json(result)
@@ -118,12 +119,12 @@ const findPlayersByName = async (nameQuery , admin) => {
       const regex = new RegExp(nameQuery, 'i');
       
       // Find players whose name matches the query
-      const matchingPlayers = await PlayerName.find({
+      const matchingPlayers = await Player.find({
           $or: [
-              { amharicName: regex },
-              { englishName: regex },
-              { somaliName: regex },
-              { oromoName: regex }
+              { 'playerName.amharicName': regex },
+              { 'playerName.englishName': regex },
+              { 'playerName.somaliName': regex },
+              { 'playerName.oromoName': regex }
           ]
       });
 
