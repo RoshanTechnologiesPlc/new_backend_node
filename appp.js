@@ -34,6 +34,7 @@ const AmharicSynthesis = require("./speech_synthesis/amharic_tigrigna");
 const teamData = require("./schemas/team_data")
 const adminRoute = require('./routes/admin/adminRouter')
 const statistics = require("./schemas/team_statistics");
+const topscorer = require("./schemas/top_scorer_schema")
 
 app.use(cors());
 const morgan = require("morgan");
@@ -417,39 +418,32 @@ app.get("/event/:fixtureId" , async(req, res)=>{
 
 
 module.exports= app
- async function getListofMatches() {
-      try {
-        console.log('Finding matches with non-null YouTube highlights...');
-        const matches = await Matches.find({
-          'youtubeHighlight.VideoTitle': { $ne: null },
-          'youtubeHighlight.VideoId': { $ne: null },
-          'youtubeHighlight.Thumbnail': { $ne: null }
-        }).populate('homeTeam', 'EnglishName AmharicName OromoName SomaliName') 
-        .populate('awayTeam', 'EnglishName AmharicName OromoName SomaliName') .sort({ date: -1 }) .lean(); 
-    
-       console.log(`Found ${matches.length} matches with valid YouTube highlights.`);
-        return matches;
-      } catch (error) {
-        console.error('Error fetching matches:', error.message);
-        throw error; 
-      }
-    }
+async function getListofMatches() {
+  try {
+    console.log('Finding matches with non-null YouTube highlights...');
+    const matches = await Matches.find({
+      'youtubeHighlight.VideoTitle': { $ne: null },
+      'youtubeHighlight.VideoId': { $ne: null },
+      'youtubeHighlight.Thumbnail': { $ne: null }
+    }).populate('homeTeam', 'EnglishName AmharicName OromoName SomaliName') 
+    .populate('awayTeam', 'EnglishName AmharicName OromoName SomaliName') .sort({ date: -1 }) .lean(); 
 
+   console.log(`Found ${matches.goals} matches with valid YouTube highlights.`);
+    return matches;
+  } catch (error) {
+    console.error('Error fetching matches:', error.message);
+    throw error; 
+  }
+}
 
 
 app.get('/api/matches', async (req, res) => {
-  // Extract page and pageSize from query parameters
-  // Provide default values if not specified
-  const page = parseInt(req.query.page) || 1;
-  const pageSize = parseInt(req.query.pageSize) || 2;
-
   try {
-    const matches = await getListofMatches(); // Assuming this is unrelated to getStatistics and should remain as is
-    const stats = await getStatistics(page, pageSize); // Fetch statistics with pagination
-    res.json({ matches, stats }); // You might want to adjust this based on your actual requirements
-    console.log(matches, stats);
+    const matches = await getListofMatches();
+    res.json(matches); 
+    console.log(matches);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching data', error: error.message });
+    res.status(500).json({ message: 'Error fetching matches', error: error.message });
   }
 });
 
@@ -475,7 +469,6 @@ app.get('/api/teamlist', async (req, res) => {
     res.status(500).json({ message: 'Error fetching matches', error: error.message });
   }
 });
-
 
 
 async function getStatisticsEnglish() {
@@ -682,8 +675,7 @@ async function getPlayers(pageNumber = 1, pageSize = 20) {
 }
 app.get('/api/playersget', async (req, res) => {
   try {
-    // Extract pageNumber and pageSize from query parameters
-    // Provide default values if not specified
+
     const pageNumber = parseInt(req.query.pageNumber) || 1;
     const pageSize = parseInt(req.query.pageSize) || 20;
 
@@ -723,3 +715,24 @@ async function gettransfer() {
  function delay(timeInMillis) {
   return new Promise(resolve => setTimeout(resolve, timeInMillis));
 }
+
+
+app.get('/api/leagues/topscorers/', async (req, res) => {
+  const { leagueId, season } = req.query;
+
+  try {
+    const topScorers = await topscorer.find({
+      'leagueid': leagueId,
+      'season': season
+    });
+
+    if (topScorers.length) {
+      res.json(topScorers);
+    } else {
+      res.status(404).send('Top scorers not found for the given league ID and season.');
+    }
+  } catch (error) {
+    res.status(500).send('An error occurred while fetching top scorers.');
+    console.error('Fetching top scorers error:', error);
+  }
+});
