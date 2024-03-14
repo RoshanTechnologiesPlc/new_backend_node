@@ -97,6 +97,8 @@ async function searchPlayer(req , res){
   try {
     const players = await findPlayersByName(req.query.name , false)
     res.status(200).json(players)
+
+    console.log('searching player for',findPlayersByName )
   } catch (error) {
     console.log('error while sending players data' , error) 
   }
