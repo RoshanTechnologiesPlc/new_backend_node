@@ -4,7 +4,8 @@ const PlayerName = require("./../schemas/player_names")
 const Player = require("./../schemas/fifa_model")
 
 const PlayerProfile = require('../schemas/player_profile')
-const User = require('../schemas/user_model')
+const User = require('../schemas/user_model');
+const { Error } = require("mongoose");
 
 
 async function getPlayers(req , res) {
@@ -97,7 +98,7 @@ async function searchPlayer(req , res){
     const players = await findPlayersByName(req.query.name , false)
     res.status(200).json(players)
   } catch (error) {
-    console.log('error while sending players data' , e) 
+    console.log('error while sending players data' , error) 
   }
  
 
@@ -129,6 +130,7 @@ const findPlayersByName = async (nameQuery , admin) => {
       });
 
       console.log('matching players length' , matchingPlayers.length)
+      return matchingPlayers
       
       if (!matchingPlayers || matchingPlayers.length === 0) {
           return [];
@@ -144,7 +146,7 @@ const findPlayersByName = async (nameQuery , admin) => {
         // const matchingPlayerWithTeams = await findMatchingPlayersForAdmin(playerIds)
         // return matchingPlayerWithTeams; 
 
-      return matchingPlayers
+
       }else{
         const playerIds = matchingPlayers.map(player => player.id);
 
