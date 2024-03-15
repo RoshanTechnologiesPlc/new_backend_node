@@ -4,11 +4,11 @@ const modifyAndCreateNewList  = require('./functions/top_players')
 async function fetchTopAssists(leagueId  , season){
     const config = {
         method: 'GET',
-        url :  `${process.env.API_FOOTBALL_URL}/players/topassists` , 
+        url :  `https://v3.football.api-sports.io/players/topassists` , 
         params: { league: leagueId , season : season},
-     
+    
           headers: { 
-            'x-rapidapi-key': process.env.API_FOOTBALL_kEY,
+            'x-rapidapi-key': '1d8b97a2a806716a1f50c53d5ca840fd',
             "x-rapidapi-host": "v3.football.api-sports.io" }
       
       };
@@ -19,7 +19,7 @@ async function fetchTopAssists(leagueId  , season){
       
           if (response.status  == 200) {
             const ScorersData = response.data["response"];
-            const TopAssists  = modifyAndCreateNewList(ScorersData)
+            const TopAssists  = await modifyAndCreateNewList(ScorersData)
 
             await topScorer.findOneAndUpdate(
               { leagueid: leagueId  , season : season}, 
