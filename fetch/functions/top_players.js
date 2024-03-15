@@ -1,72 +1,84 @@
-const PlayerName = require('../../schemas/player_names')
-const transliteratePlayer = require('../player_transliteration')
+const PlayerName = require('../../schemas/player_names');
+const Players = require('../../schemas/fifa_model');
+
+const transliteratePlayer = require('../player_transliteration');
 
 async function modifyAndCreateNewList(responseList) {
     const modifyElement = async (element) => {
         try {
-            const playerId = element["player"]["id"];
-            let playerNameData = await PlayerName.findOne({ id: playerId , translated : true});
+         
+            const player = element.player;
+            const playerId = player.id;
+            let playerNameData = await Players.findOne({ playerId: playerId });
 
-            const playerData = {};
+            let playerData = {
+                amharicName: player.name,
+                oromoName: player.name,
+                somaliName: player.name,
+                englishName: player.name,
+                photo: player.photo,
+                tigrignaName: player.name
+
+            };
+
             if (!playerNameData) {
-                const transliteratedPlayer = await transliteratePlayer(element["player"]["name"]);
+                const transliteratedPlayer = await transliteratePlayer(player.name);
                 if (transliteratedPlayer) {
                     const { AmharicName, OromoName, SomaliName } = transliteratedPlayer;
-                    const englishName = element["player"]["name"];
-                    const photo = element["player"]["photo"];
-                    const translated = true;
+                    Object.assign(playerData, {
+                        amharicName: AmharicName,
+                        oromoName: OromoName,
+                        somaliName: SomaliName,
+                        tigrignaName: AmharicName
+                    });
 
-                    playerData.id = playerId;
-                    playerData.amharicName = AmharicName;
-                    playerData.oromoName = OromoName;
-                    playerData.somaliName = SomaliName;
-                    playerData.englishName = englishName;
-                    playerData.photo = photo;
-                    playerData.tigrignaName = AmharicName;
-
-                    const newPlayerName = new PlayerName({ id: playerId, amharicName: AmharicName, oromoName: OromoName, somaliName: SomaliName, englishName, photo, translated });
+                    const newPlayerName = new PlayerName({
+                        id: playerId,
+                        ...playerData,
+                        translated: true
+                    });
                     await newPlayerName.save();
-                } else {
-                    playerData.amharicName = englishName;
-                    playerData.oromoName = englishName;
-                    playerData.somaliName = englishName;
-                    playerData.englishName = englishName;
-                    playerData.photo = photo;
-                    playerData.tigrignaName = englishName;
                 }
             } else {
-                playerData.amharicName = playerNameData.amharicName;
-                playerData.oromoName = playerNameData.oromoName;
-                playerData.somaliName = playerNameData.somaliName;
-                playerData.englishName = playerNameData.englishName;
-                playerData.photo = playerNameData.photo;
-                playerData.tigrignaName = playerNameData.amharicName;
+                Object.assign(playerData, {
+                    amharicName: playerNameData.playerName.amharicName,
+                    oromoName: playerNameData.playerName.oromoName,
+                    somaliName: playerNameData.playerName.somaliName,
+                    englishName: playerNameData.playerName.englishName,
+                    photo: playerNameData.playerName.photo,
+                    tigrignaName: playerNameData.playerName.amharicName
+                    
+                });
             }
-
+          
             return {
-                "playerName": element["player"]["name"],
-                "amharicName": playerData.amharicName,
-                "oromoName": playerData.oromoName,
-                "somaliName": playerData.somaliName,
-                "englishName": playerData.englishName,
-                "playerId": playerId,
-               
-                "teamName": element["statistics"][0]["team"]["name"],
-                "teamLogo": element["statistics"][0]["team"]["logo"],
-                "teamId": element["statistics"][0]["team"]["id"],
-                "goals": element["statistics"][0]["goals"]["total"],
-                "penality": element["statistics"][0]["penalty"]["scored"]
+                playerName: player.name,
+                ...playerData,
+                playerId: playerId,
+                teamName: element.statistics[0].team.name,
+                teamLogo: element.statistics[0].team.logo,
+                teamId: element.statistics[0].team.id,
+                goals: element.statistics[0].goals.total,
+                penality: element.statistics[0].penalty.scored,
+                yellow:element.statistics[0].cards.yellow,
+                assists:element.statistics[0].goals.assists,
+                red:element.statistics[0].cards.red,
+
+              
+
             };
         } catch (error) {
-            console.error(`Error processing player ID ${element["player"]["id"]}:`, error);
-            return null; // Skip this player if an error occurs
+            console.error(`Error processing player ID ${playerId}:`, error);
+            return null;
         }
     };
 
-    const promises = responseList.map(element => modifyElement(element));
-    const results = await Promise.all(promises);
-    return results.filter(result => result !== null); // Filter out null results
+    const results = await Promise.all(responseList.map(modifyElement));
+    return results;
 }
 
-
 module.exports = modifyAndCreateNewList;
+
+
+
+
