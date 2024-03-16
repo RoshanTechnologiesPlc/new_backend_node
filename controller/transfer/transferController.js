@@ -1,26 +1,27 @@
-const Transfer = require("../../schemas/transfer");
-
-// This version reverses the sort order of the documents.
 const index = (req, res) => {
-  const handleError = (error, message = "An error occurred") => {
-    console.log(error);
-    res.status(502).json({ message });
-  };
-
-  const sendResponse = (response) => {
-    res.status(200).json({ response });
-  };
-
   try {
-    const pageSize = 3; // Controls the number of documents returned
+    const pageNumber = +parseInt(req.query.pageNumber);
+    const pageSize = 3;
+    
+    // Removed amharicNameExistsQuery to include entries with null or missing AmharicName
 
     Transfer.find({})
-      .sort({ createdAt: 1 }) // Sorts documents by creation time in ascending order
-      .limit(pageSize) // Limits the number of documents to pageSize
-      .then(sendResponse) // Sends the retrieved documents as a response
-      .catch((error) => handleError(error, "An error Occurred"));
-  } catch (error) {
-    handleError(error, "Invalid request");
+      .sort({ createdAt: - 1 })
+      .skip((pageNumber - 1) * pageSize)
+      .limit(pageSize)
+      .then((response) => {
+        res.status(200).json({
+          response,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        res.status(502).json({
+          message: "An error Occured",
+        });
+      });
+  } catch (e) {
+    res.status(404).json({ message: "error" });
   }
 };
 
