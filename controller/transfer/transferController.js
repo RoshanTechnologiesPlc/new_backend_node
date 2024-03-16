@@ -11,7 +11,7 @@ const index = (req, res) => {
     // Fetch data in ascending order this time
     Transfer.find({})
       .sort({ createdAt: 1 }) // Ascending order
-      .skip((pageNumber - 1) * pageSize)
+      // .skip((pageNumber - 1) * pageSize)
       .limit(pageSize)
       .then((response) => {
         // Process data to exclude the 2nd item from the end after reversing
