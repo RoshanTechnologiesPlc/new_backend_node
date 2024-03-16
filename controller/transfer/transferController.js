@@ -1,12 +1,13 @@
+const Transfer = require("../../schemas/transfer");
+// ... other requires
+
 const index = (req, res) => {
   try {
     const pageNumber = +parseInt(req.query.pageNumber);
     const pageSize = 3;
-    
-    // Removed amharicNameExistsQuery to include entries with null or missing AmharicName
 
-    Transfer.find({})
-      .sort({ createdAt:  1 })
+    Transfer.find() // No more filter query
+      .sort({ createdAt: 1 })
       .skip((pageNumber - 1) * pageSize)
       .limit(pageSize)
       .then((response) => {
