@@ -22,12 +22,12 @@ function getNextLiveDate(daySchedule, dayOfWeek) {
     const now = new Date();
     const liveDate = new Date();
 
-    liveDate.setHours(daySchedule[0]['start-hour'], daySchedule[1]['start-minute'], 0, 0);
+    liveDate.setHours(daySchedule[0]['start-hour'], daySchedule[0]['start-minute'], 0, 0); // Corrected to use the first index for both hour and minute
     liveDate.setSeconds(0);  // Ensure seconds are set to zero
 
-    // Adjust day of week to match your array (Monday = 0, Sunday = 6)
+    // Adjust day of week to match array (Monday = 0, Sunday = 6)
     let currentDayOfWeek = now.getDay();
-    currentDayOfWeek = (currentDayOfWeek + 6) % 7; // Convert so that Monday = 0, Sunday = 6
+    currentDayOfWeek = (currentDayOfWeek === 0 ? 6 : currentDayOfWeek - 1); // Adjust so that Sunday = 6, Monday = 0
 
     let dayDiff = dayOfWeek - currentDayOfWeek;
     if (dayDiff < 0) {
@@ -43,6 +43,7 @@ function getNextLiveDate(daySchedule, dayOfWeek) {
 
     return liveDate;
 }
+
 
 
 module.exports = initializePodcastAgenda;
