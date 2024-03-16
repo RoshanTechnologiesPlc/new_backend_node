@@ -6,7 +6,7 @@ const index = (req, res) => {
     // Removed amharicNameExistsQuery to include entries with null or missing AmharicName
 
     Transfer.find({})
-      .sort({ createdAt: - 1 })
+      .sort({ createdAt:  1 })
       .skip((pageNumber - 1) * pageSize)
       .limit(pageSize)
       .then((response) => {
