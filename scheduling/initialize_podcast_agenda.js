@@ -8,7 +8,6 @@ async function initializePodcastAgenda(agenda) {
             podcast.liveTimes.forEach((daySchedule, dayIndex) => {
                 if (daySchedule[0]['start-hour'] !== null) {
                     const liveDate = getNextLiveDate(daySchedule, dayIndex);
-                    
                     agenda.schedule(liveDate, 'notify podcast live', { podcastId: podcast.id });
                 }
             });
@@ -25,21 +24,22 @@ function getNextLiveDate(daySchedule, dayOfWeek) {
     liveDate.setHours(daySchedule[0]['start-hour'], daySchedule[0]['start-minute'], 0, 0);
     liveDate.setSeconds(0); // Ensure seconds are set to zero
 
-    // Adjust day of week to start from Monday (0) to Sunday (6)
+    // Correctly adjust day of week to start from Monday (0) to Sunday (6)
     let currentDayOfWeek = now.getDay(); // JavaScript's getDay(): Sunday = 0, Monday = 1, ..., Saturday = 6
-    currentDayOfWeek = (currentDayOfWeek === 0 ? 6 : currentDayOfWeek - 1); // Adjust so Monday = 0, ..., Sunday = 6
+    // Convert so that Monday = 0, ..., Sunday = 6
+    currentDayOfWeek = currentDayOfWeek === 0 ? 6 : currentDayOfWeek - 1;
 
     let dayDiff = dayOfWeek - currentDayOfWeek;
     if (dayDiff < 0) {
-        dayDiff += 7; // Schedule for the next week if dayOfWeek has already passed
+        dayDiff += 7; // If dayOfWeek has already passed, schedule for the next week
     }
 
-    // Check if the scheduled time for today has already passed, and adjust dayDiff if so
-    if (dayDiff === 0 && liveDate <= now) {
-        dayDiff = 7; // Next occurrence of the day
+    // If scheduling for today but the time has already passed, set for next week
+    if (dayDiff === 0 && liveDate.getTime() <= now.getTime()) {
+        dayDiff = 7;
     }
 
-    liveDate.setDate(now.getDate() + dayDiff); // Set the date for the next live event
+    liveDate.setDate(now.getDate() + dayDiff); // Calculate the date for the next occurrence of the day
 
     return liveDate;
 }
