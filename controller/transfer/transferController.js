@@ -16,7 +16,7 @@ const index = (req, res) => {
       .then((response) => {
         // Process data to exclude the 2nd item from the end after reversing
         const processedResponse = response
-          // .filter((_, index) => index !== 1) // Skip the 2nd item (since we will reverse the array, it corresponds to the second-to-last item in original order)
+          .filter((_, index) => index !== 1) // Skip the 2nd item (since we will reverse the array, it corresponds to the second-to-last item in original order)
           .reverse(); // Reverse to make it upside down
 
         res.status(200).json({
