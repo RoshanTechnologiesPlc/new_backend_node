@@ -1,12 +1,21 @@
 const Transfer = require("../../schemas/transfer");
-// ... other requires
-
+const getTransferRssFeed = require("../../rss_json/transfer");
+const transliteratePlayers = require("../../fetch/player_transliteration");
+// fetch all data desc order
 const index = (req, res) => {
   try {
     const pageNumber = +parseInt(req.query.pageNumber);
-    const pageSize = 3;
+    const pageSize = 10;
+    // Query to ensure none of the AmharicName fields are missing or empty
+    const amharicNameExistsQuery = {
+      $and: [
+        { "fromClubName.AmharicName": { $exists: true, $ne: "" } },
+        { "toClubName.AmharicName": { $exists: true, $ne: "" } },
+        { "playerName.AmharicName": { $exists: true, $ne: "" } },
+      ],
+    };
 
-    Transfer.find() // No more filter query
+    Transfer.find(amharicNameExistsQuery)
       .sort({ createdAt: 1 })
       .skip((pageNumber - 1) * pageSize)
       .limit(pageSize)
@@ -26,4 +35,5 @@ const index = (req, res) => {
   }
 };
 
-module.exports = index;
+
+module.exports =  index
