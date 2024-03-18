@@ -5,7 +5,7 @@ const transliteratePlayers = require("../../fetch/player_transliteration");
 const index = (req, res) => {
   try {
     const pageNumber = +parseInt(req.query.pageNumber);
-    const pageSize = 7;
+    const pageSize = 3;
     // Query to ensure none of the AmharicName fields are missing or empty
     const amharicNameExistsQuery = {
       $and: [
