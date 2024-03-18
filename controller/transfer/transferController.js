@@ -7,8 +7,16 @@ const index = (req, res) => {
   try{
  
     const pageNumber= +parseInt(req.query.pageNumber)
-    const pageSize = 10;
-    Transfer.find()
+    const pageSize = 3;
+   const amharicNameExistsQuery = {
+      $and: [
+        { "fromClubName.AmharicName": { $exists: true, $ne: "" } },
+        { "toClubName.AmharicName": { $exists: true, $ne: "" } },
+        { "playerName.AmharicName": { $exists: true, $ne: "" } },
+      ],
+    };
+
+    Transfer.find(amharicNameExistsQuery)
       .sort({ createdAt: 1 }).skip((pageNumber - 1) * pageSize).limit(pageSize)
       .then((response) => {
         res.status(200).json({
