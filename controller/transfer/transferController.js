@@ -1,3 +1,4 @@
+
 const Transfer = require("../../schemas/transfer");
 const getTransferRssFeed = require("../../rss_json/transfer");
 const transliteratePlayers = require("../../fetch/player_transliteration");
@@ -7,16 +8,8 @@ const index = (req, res) => {
   try{
  
     const pageNumber= +parseInt(req.query.pageNumber)
-    const pageSize = 3;
-   const amharicNameExistsQuery = {
-      $and: [
-        { "fromClubName.AmharicName": { $exists: true, $ne: "" } },
-        { "toClubName.AmharicName": { $exists: true, $ne: "" } },
-        { "playerName.AmharicName": { $exists: true, $ne: "" } },
-      ],
-    };
-
-    Transfer.find(amharicNameExistsQuery)
+    const pageSize = 5;
+    Transfer.find()
       .sort({ createdAt: 1 }).skip((pageNumber - 1) * pageSize).limit(pageSize)
       .then((response) => {
         res.status(200).json({
