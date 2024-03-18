@@ -8,7 +8,7 @@ const index = (req, res) => {
   try{
  
     const pageNumber= +parseInt(req.query.pageNumber)
-    const pageSize = 5;
+    const pageSize = 8;
     Transfer.find()
       .sort({ createdAt: 1 }).skip((pageNumber - 1) * pageSize).limit(pageSize)
       .then((response) => {
