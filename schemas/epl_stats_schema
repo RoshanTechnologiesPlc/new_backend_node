@@ -1,0 +1,58 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+// Define the schema for individual goal information
+const goalSchema = new Schema({
+  playerId: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  rank: {
+    type: String,
+    required: true
+  },
+  englishName: {
+    type: String,
+    required: true
+  },
+  teamName: {
+    type: String,
+    default: ''
+  },
+  goals: {
+    type: Number,
+    required: true
+  },
+  teamLogo: {
+    type: String,
+    default: ''
+  },
+  photo: {
+    type: String,
+    default: ''
+  }
+});
+
+// Define the schema for the stats object
+const statsSchema = new Schema({
+  goals: [goalSchema] // An array of goal documents
+});
+
+// Define the main schema that includes leagueid, season, and the stats object
+const playerStatsSchema = new Schema({
+  leagueid: {
+    type: Number,
+    required: true
+  },
+  season: {
+    type: Number,
+    required: true
+  },
+  stats: statsSchema // The stats object containing the goals array
+});
+
+// Create the model from the schema
+const PlayerStats = mongoose.model('PlayerStats', playerStatsSchema);
+
+module.exports = PlayerStats;
