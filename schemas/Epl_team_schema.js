@@ -1,19 +1,46 @@
+
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const statSchema = new Schema({
-  rank: String,
-  name: String,
-  clubName: String,
-  goals: Number,
-  assists: Number, // Assuming you might have assist data
-  passes: Number, // Assuming you might have pass data
-  minutesPlayed: Number, // Assuming you might have minutes played data
-  clubLogoUrl: String,
-  playerPhotoUrl: String
-}, { _id: false });
+// Define the schema for individual goal information
+const goalSchema = new Schema({
+  playerId: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  rank: {
+    type: String,
+    required: true
+  },
+  englishName: {
+    type: String,
+    required: true
+  },
+  teamName: {
+    type: String,
+    default: ''
+  },
+  goals: {
+    type: Number,
+    required: true
+  },
+  teamLogo: {
+    type: String,
+    default: ''
+  },
+  photo: {
+    type: String,
+    default: ''
+  }
+});
 
-const teamStatsSchema = new Schema({
+const statsSchema = new Schema({
+  goals: [goalSchema]
+});
+
+const playerStatsSchema = new Schema({
   leagueid: {
     type: Number,
     required: true
@@ -22,11 +49,10 @@ const teamStatsSchema = new Schema({
     type: Number,
     required: true
   },
-  stats: {
-    type: Map,
-    of: [statSchema]
-  }
+  stats: statsSchema 
 });
 
-module.exports = mongoose.model("team_stat", teamStatsSchema);
-    
+
+const PlayerStats = mongoose.model('team_stat', playerStatsSchema);
+
+module.exports = PlayerStats;
