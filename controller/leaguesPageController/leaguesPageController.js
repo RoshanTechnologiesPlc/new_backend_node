@@ -5,7 +5,8 @@ const TopYellowCard = require("../../schemas/top_yellow_card")
 const LeagueStatistics = require("../../schemas/league_statistics")
 const TeamStatistics = require("../../schemas/team_statistics")
 const StandingSchema = require("../../schemas/standings")
-const playertop = require("../../schemas/epl_stats_schema")
+const playertop = require("../../schemas/Epl_player_schema")
+const topteams = require("../../schemas/Epl_team_schema")
 
 const availableSeasonsSchema = require("../../schemas/available_seasons")
 
@@ -30,7 +31,7 @@ async function getTopScorersbyLeagueId(req , res) {
     leagueId = req.query.leagueId
     season = req.query.season
     try {
-      const topAssistors = await TopAssistors.find({ 
+      const topAssistors = await topteams.find({ 
        leagueid : leagueId , 
        season : season
        });
