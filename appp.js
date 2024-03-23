@@ -736,6 +736,115 @@ app.get('/api/playersgetenglish', async (req, res) => {
 });
 
 
+async function getSpainPlayers() {
+  try {
+    console.log('Finding ...');
+    const players = await Player.find({league_id:53}).limit(250);
+    console.log(players);
+    playersCache = players; 
+    return players;
+  } catch (error) {
+    console.error('Error fetching players:', error.message);
+    throw error;
+  }
+}
+app.get('/api/playersgetSpain', async (req, res) => {
+  try {
+    const players = await getSpainPlayers();
+    res.json(players); 
+    console.log(players);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching players', error: error.message });
+  }
+});
+
+async function getItalyPlayers() {
+  try {
+    console.log('Finding ...');
+    const players = await Player.find({league_id:31}).limit(250);
+    console.log(players);
+    playersCache = players; 
+    return players;
+  } catch (error) {
+    console.error('Error fetching players:', error.message);
+    throw error;
+  }
+}
+app.get('/api/playersgetItaly', async (req, res) => {
+  try {
+    const players = await getItalyPlayers();
+    res.json(players); 
+    console.log(players);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching players', error: error.message });
+  }
+});
+
+async function getGermanPlayers() {
+  try {
+    console.log('Finding ...');
+    const players = await Player.find({league_id:19}).limit(250);
+    console.log(players);
+    playersCache = players; 
+    return players;
+  } catch (error) {
+    console.error('Error fetching players:', error.message);
+    throw error;
+  }
+}
+app.get('/api/playersgetgerman', async (req, res) => {
+  try {
+    const players = await getGermanPlayers();
+    res.json(players); 
+    console.log(players);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching players', error: error.message });
+  }
+});
+async function getfrancePlayers() {
+  try {
+    console.log('Finding ...');
+    const players = await Player.find({league_id:16}).limit(250);
+    console.log(players);
+    playersCache = players; 
+    return players;
+  } catch (error) {
+    console.error('Error fetching players:', error.message);
+    throw error;
+  }
+}
+app.get('/api/playersgetfrance', async (req, res) => {
+  try {
+    const players = await getfrancePlayers();
+    res.json(players); 
+    console.log(players);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching players', error: error.message });
+  }
+});
+async function getsaudiPlayers() {
+  try {
+    console.log('Finding ...');
+    const players = await Player.find({league_id:350}).limit(250);
+    console.log(players);
+    playersCache = players; 
+    return players;
+  } catch (error) {
+    console.error('Error fetching players:', error.message);
+    throw error;
+  }
+}
+app.get('/api/playersgetSaudi', async (req, res) => {
+  try {
+    const players = await getsaudiPlayers();
+    res.json(players); 
+    console.log(players);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching players', error: error.message });
+  }
+});
+
+
 
 app.get('/api/transfers', async (req, res) => {
   try {
