@@ -687,13 +687,36 @@ app.get('/api/playersget', async (req, res) => {
   }
 });
 
-async function getenglishPlayers(pageNumber = 1, pageSize = 20) {
+async function getEthiopiaPlayers() {
   try {
     console.log('Finding ...');
  
-    const skip = (pageNumber - 1) * pageSize;
 
-    const players = await Player.find({'teamName.id':39}).skip(skip).limit(pageSize);
+
+    const players = await Player.find({'teamName.id':363}).limit(250);
+    console.log(players);
+    playersCache = players; 
+    return players;
+  } catch (error) {
+    console.error('Error fetching players:', error.message);
+    throw error;
+  }
+}
+app.get('/api/playersgethiopia', async (req, res) => {
+  try {
+    const players = await getEthiopiaPlayers();
+    res.json(players); 
+    console.log(players);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching players', error: error.message });
+  }
+});
+
+
+async function getEnglishPlayers() {
+  try {
+    console.log('Finding ...');
+    const players = await Player.find({'teamName.id':39}).limit(250);
     console.log(players);
     playersCache = players; 
     return players;
@@ -704,10 +727,7 @@ async function getenglishPlayers(pageNumber = 1, pageSize = 20) {
 }
 app.get('/api/playersgetenglish', async (req, res) => {
   try {
-    const pageNumber = parseInt(req.query.pageNumber) || 1;
-    const pageSize = parseInt(req.query.pageSize) || 20;
-
-    const players = await getenglishPlayers(pageNumber, pageSize);
+    const players = await getEnglishPlayers();
     res.json(players); 
     console.log(players);
   } catch (error) {
