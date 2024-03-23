@@ -716,7 +716,7 @@ app.get('/api/playersgethiopia', async (req, res) => {
 async function getEnglishPlayers() {
   try {
     console.log('Finding ...');
-    const players = await Player.find({'teamName.id':39}).limit(250);
+    const players = await Player.find({league_id:13}).limit(250);
     console.log(players);
     playersCache = players; 
     return players;
