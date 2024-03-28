@@ -1,0 +1,302 @@
+const puppeteer = require('puppeteer');
+const { MongoClient } = require('mongodb');
+
+// MongoDB connection URI
+const uri = 'mongodb+srv://abubekersiraj:Mongodbpassword1234@test.zezynu2.mongodb.net/?retryWrites=true&w=majority';
+
+// Define a list of configurations for each league/site you want to scrape
+const leagueConfigs = [
+  {
+    "url": "https://fbref.com/en/comps/9/Premier-League-Stats#all_league_structure",
+    "leagueid": 39
+  },
+  {
+    "url": "https://fbref.com/en/comps/12/La-Liga-Stats#all_league_structure",
+    "leagueid": 140
+  },
+  {
+    "url": "https://fbref.com/en/comps/20/Bundesliga-Stats#all_league_structure",
+    "leagueid": 78
+  },
+  {
+    "url": "https://fbref.com/en/comps/11/Serie-A-Stats#all_league_structure",
+    "leagueid": 135
+  },
+  {
+    "url": "https://fbref.com/en/comps/13/Ligue-1-Stats#all_league_structure",
+    "leagueid": 61
+  },
+  {
+    "url": "https://fbref.com/en/comps/8/Champions-League-Stats#all_league_structure",
+    "leagueid": 2
+  },
+  {
+    "url": "https://fbref.com/en/comps/19/Europa-League-Stats#all_league_structure",
+    "leagueid": 3
+  },
+  {
+    "url": "https://fbref.com/en/comps/22/Major-League-Soccer-Stats#all_league_structure",
+    "leagueid": 253
+  },
+  {
+    "url": "https://fbref.com/en/comps/24/Serie-A-Stats#all_league_structure",
+    "leagueid": 63
+  },
+  {
+    "url": "https://fbref.com/en/comps/21/Primera-Division-Stats#all_league_structure",
+    "leagueid": 136
+  },
+  {
+    "url": "https://fbref.com/en/comps/676/European-Championship-Stats#all_league_structure",
+    "leagueid": 4
+  },
+  {
+    "url": "https://fbref.com/en/comps/1/World-Cup-Stats#all_league_structure",
+    "leagueid": 5
+  },
+  {
+    "url": "https://fbref.com/en/comps/23/Eredivisie-Stats#all_league_structure",
+    "leagueid": 88
+  },
+  {
+    "url": "https://fbref.com/en/comps/32/Primeira-Liga-Stats#all_league_structure",
+    "leagueid": 94
+  },
+  {
+    "url": "https://fbref.com/en/comps/30/Premier-League-Stats#all_league_structure",
+    "leagueid": 110
+  },
+  {
+    "url": "https://fbref.com/en/comps/26/Super-Lig-Stats#all_league_structure",
+    "leagueid": 195
+  },
+  {
+    "url": "https://fbref.com/en/comps/31/Liga-MX-Stats#all_league_structure",
+    "leagueid": 122
+  },
+  {
+    "url": "https://fbref.com/en/comps/29/Super-League-Stats#all_league_structure",
+    "leagueid": 271
+  },
+  {
+    "url": "https://fbref.com/en/comps/57/A-League-Stats#all_league_structure",
+    "leagueid": 77
+  },
+  {
+    "url": "https://fbref.com/en/comps/43/J1-League-Stats#all_league_structure",
+    "leagueid": 115
+  }
+  
+  // Add more configurations as needed
+];
+
+// Generalized function to scrape and store data for a given league/site
+async function scrapeAndStoreData({url, leagueid}) {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(url, { waitUntil: 'networkidle2' });
+
+  // Function to extract data from a table on the page
+  async function extractDataFromTable(tableSelector) {
+    return await page.$$eval(`${tableSelector} tbody tr`, rows => 
+      rows.map(row => {
+        const cells = row.querySelectorAll('td');
+        const playerLinkElement = cells[1]?.querySelector('a');
+        const playerLink = playerLinkElement ? playerLinkElement.getAttribute('href') : null;
+        const playerID = playerLink ? playerLink.split('/')[3] : null;
+        const photoURL = playerID ? `https://fbref.com/req/202302030/images/headshots/${playerID}_2022.jpg` : null;
+
+        const clubLinkElement = playerLinkElement ? playerLinkElement.closest('td').querySelector('span.desc > a') : null;
+        const clubLink = clubLinkElement ? clubLinkElement.getAttribute('href') : null;
+        const clubID = clubLink ? clubLink.split('/')[3] : null;
+        const clubPhotoURL = clubID ? `https://cdn.ssref.net/req/202312151/tlogo/fb/${clubID}.png` : null;
+        const clubName = clubLinkElement ? clubLinkElement.textContent.trim() : null;
+
+        return {
+          playerId: "0",
+          rank: cells[0]?.textContent.trim(),
+          englishName: playerLinkElement?.textContent.trim(),
+          teamName: clubName,
+          goals: cells[2]?.textContent.trim(),
+          teamLogo: clubPhotoURL,
+          photo: photoURL,
+        };
+      })
+    );
+  }
+
+  // Implementations for other data extractions...
+  // Just for the example's sake, let's say we're only pulling the goalsLeaders
+  const goalsLeaders = await extractDataFromTable('#leaders_goals');
+  const goalsPer90Leaders = await extractDataFromTable('#leaders_goals_per90');
+  const assistsLeaders = await extractDataFromTable('#leaders_assists');
+  const assistsPer90Leaders = await extractDataFromTable('#leaders_assists_per90');
+  const goalsAssistsLeaders = await extractDataFromTable('#leaders_goals_assists');
+  const goalsAssistsPer90Leaders = await extractDataFromTable('#leaders_goals_assists_per90');
+  const pensMadeLeaders = await extractDataFromTable('#leaders_pens_made');
+  const goalsPensLeaders = await extractDataFromTable('#leaders_goals_pens');
+  const goalsAssistsPensLeaders = await extractDataFromTable('#leaders_goals_assists_pens');
+  const goalsAssistsPensPer90Leaders = await extractDataFromTable('#leaders_goals_assists_per90');
+  const xgLeaders = await extractDataFromTable('#leaders_xg');
+  const xgPer90Leaders = await extractDataFromTable('#leaders_xg_per90');
+  const npxgLeaders = await extractDataFromTable('#leaders_npxg');
+  const npxgPer90Leaders = await extractDataFromTable('#leaders_npxg_per90');
+  const xgAssistLeaders = await extractDataFromTable('#leaders_xg_assist');
+  const xgAssistPer90Leaders = await extractDataFromTable('#leaders_xg_assist_per90');
+  const shotsLeaders = await extractDataFromTable('#leaders_shots');
+  const shotsPer90Leaders = await extractDataFromTable('#leaders_shots_per90');
+  const shotsOnTargetLeaders = await extractDataFromTable('#leaders_shots_on_target');
+  const shotsOnTargetPer90Leaders = await extractDataFromTable('#leaders_shots_on_target_per90');
+  const shotsOnTargetPctLeaders = await extractDataFromTable('#leaders_shots_on_target_pct');
+  const goalsPerShotLeaders = await extractDataFromTable('#leaders_goals_per_shot');
+  const goalsPerShotOnTargetLeaders = await extractDataFromTable('#leaders_goals_per_shot_on_target');
+  const npxgNetLeaders = await extractDataFromTable('#leaders_npxg_net');
+  const npxgPerShotLeaders = await extractDataFromTable('#leaders_npxg_per_shot');
+  const npxgPerShotOnTargetLeaders = await extractDataFromTable('#leaders_npxg_per_shot_on_target');
+  const xgNetLeaders = await extractDataFromTable('#leaders_xg_net');
+  const assistedShotsLeaders = await extractDataFromTable('#leaders_assisted_shots');
+  const passesPctLeaders = await extractDataFromTable('#leaders_passes_pct');
+  const passesProgressiveLeaders = await extractDataFromTable('#leaders_passes_progressive');
+  const passesIntoFinalThirdLeaders = await extractDataFromTable('#leaders_passes_into_final_third');
+  const passesIntoPenaltyAreaLeaders = await extractDataFromTable('#leaders_passes_into_penalty_area');
+  const crossesIntoPenaltyAreaLeaders = await extractDataFromTable('#leaders_crosses_into_penalty_area');
+  const progressivePassesLeaders = await extractDataFromTable('#leaders_progressive_passes');
+  const throughBallsLeaders = await extractDataFromTable('#leaders_through_balls');
+  const passesXaLeaders = await extractDataFromTable('#leaders_passes_xa');
+  const passXaPer90Leaders = await extractDataFromTable('#leaders_pass_xa_per90');
+  const cornerKicksLeaders = await extractDataFromTable('#leaders_corner_kicks');
+  const crossesLeaders = await extractDataFromTable('#leaders_crosses');
+  const throwInsLeaders = await extractDataFromTable('#leaders_throw_ins');
+  const scaLeaders = await extractDataFromTable('#leaders_sca');
+  const scaPer90Leaders = await extractDataFromTable('#leaders_sca_per90');
+  const gcaLeaders = await extractDataFromTable('#leaders_gca');
+  const gcaPer90Leaders = await extractDataFromTable('#leaders_gca_per90');
+  const tacklesLeaders = await extractDataFromTable('#leaders_tackles');
+  const tacklesWonLeaders = await extractDataFromTable('#leaders_tackles_won');
+  const challengeTacklesLeaders = await extractDataFromTable('#leaders_challenge_tackles');
+  const challengeTacklesPctLeaders = await extractDataFromTable('#leaders_challenge_tackles_pct');
+  const blocksLeaders = await extractDataFromTable('#leaders_blocks');
+  const interceptionsLeaders = await extractDataFromTable('#leaders_interceptions');
+  const clearancesLeaders = await extractDataFromTable('#leaders_clearances');
+  const touchesLeaders = await extractDataFromTable('#leaders_touches');
+  const takeOnsWonLeaders = await extractDataFromTable('#leaders_take_ons_won');
+  const takeOnsWonPctLeaders = await extractDataFromTable('#leaders_take_ons_won_pct');
+  const carriesProgressiveDistanceLeaders = await extractDataFromTable('#leaders_carries_progressive_distance');
+  const progressiveCarriesLeaders = await extractDataFromTable('#leaders_progressive_carries');
+  const carriesIntoPenaltyAreaLeaders = await extractDataFromTable('#leaders_carries_into_penalty_area');
+  const progressivePassesReceivedLeaders = await extractDataFromTable('#leaders_progressive_passes_received');
+  const minutesLeaders = await extractDataFromTable('#leaders_minutes');
+  const gamesSubsLeaders = await extractDataFromTable('#leaders_games_subs');
+  const pointsPerGameLeaders = await extractDataFromTable('#leaders_points_per_game');
+  const plusMinusLeaders = await extractDataFromTable('#leaders_plus_minus');
+  const plusMinusPer90Leaders = await extractDataFromTable('#leaders_plus_minus_per90');
+  const xgPlusMinusLeaders = await extractDataFromTable('#leaders_xg_plus_minus');
+  const xgPlusMinusPer90Leaders = await extractDataFromTable('#leaders_xg_plus_minus_per90');
+  const cardsYellowLeaders = await extractDataFromTable('#leaders_cards_yellow');
+  const cardsYellowPer90Leaders = await extractDataFromTable('#leaders_cards_yellow_per90');
+  const cardsRedLeaders = await extractDataFromTable('#leaders_cards_red');
+  const aerialsWonLeaders = await extractDataFromTable('#leaders_aerials_won');
+  const foulsLeaders = await extractDataFromTable('#leaders_fouls');
+  const fouledLeaders = await extractDataFromTable('#leaders_fouled');
+  const ownGoalsLeaders = await extractDataFromTable('#leaders_own_goals');
+  const gkCleanSheetsLeaders = await extractDataFromTable('#leaders_gk_clean_sheets');
+  const gkCleanSheetsPctLeaders = await extractDataFromTable('#leaders_gk_clean_sheets_pct');
+  const gkSavesLeaders = await extractDataFromTable('#leaders_gk_saves');
+  const gkSavePctLeaders = await extractDataFromTable('#leaders_gk_save_pct');
+  const gkGoalsAgainstPer90Leaders = await extractDataFromTable('#leaders_gk_goals_against_per90');
+  const gkPsxgNetLeaders = await extractDataFromTable('#leaders_gk_psxg_net');
+  const gkPsxgNetPer90Leaders = await extractDataFromTable('#leaders_gk_psxg_net_per90');
+
+
+  function mapStatCategory(categoryData) {
+    return categoryData.map(item => ({
+      playerId: item.playerId,
+      rank: item.rank,
+      englishName: item.englishName,
+      teamName: item.teamName,
+      goals: item.goals,
+      teamLogo: item.teamLogo,
+      photo: item.photo,
+    }));
+  }
+
+  const statsDocument = {
+    leagueid: leagueid,
+    season: 2023,
+    stats: {
+      "goals": mapStatCategory(goalsLeaders),
+    "assists": mapStatCategory(assistsLeaders),
+    "passes": mapStatCategory(passesIntoFinalThirdLeaders), // Adapted as a closer alternative for general "passes"
+    "minutesPlayed": mapStatCategory(minutesLeaders),
+    "Shots": mapStatCategory(shotsLeaders),
+    "Hit woodwork": mapStatCategory(shotsOnTargetLeaders),
+    "Through balls": mapStatCategory(throughBallsLeaders),
+    "Crosses": mapStatCategory(crossesLeaders),
+    "Tackles": mapStatCategory(tacklesLeaders),
+    "Blocks": mapStatCategory(blocksLeaders),
+    "Clearances": mapStatCategory(clearancesLeaders),
+    "Headed clearances": mapStatCategory(interceptionsLeaders), // Assuming this is the correct mapping
+    "Clean sheets": mapStatCategory(gkCleanSheetsLeaders),
+    "Saves": mapStatCategory(gkSavesLeaders),
+    "Punches": mapStatCategory(gkSavePctLeaders), // Assuming this is the correct mapping
+    "Goal conceded": mapStatCategory(gkGoalsAgainstPer90Leaders),
+    "Yellow cards": mapStatCategory(cardsYellowLeaders),
+    "Red cards": mapStatCategory(cardsRedLeaders),
+    "Fouls": mapStatCategory(foulsLeaders),
+    "Offsides": mapStatCategory(passesIntoPenaltyAreaLeaders) 
+    }
+  };
+
+const client = new MongoClient(uri);
+try {
+  await client.connect();
+  const database = client.db('test');
+  const collection = database.collection('playerstats');
+  
+  // Define the filter for fetching the existing document
+  const filter = { leagueid: leagueid, season: 2023 };
+  
+  // Attempt to fetch the existing document
+  const existingDocument = await collection.findOne(filter);
+
+  // Compare the new data with the existing data
+  let doUpdate = true; // Default to true if document doesn't exist
+  if (existingDocument) {
+    // Perform your comparison here; for example, using JSON string comparison for simplicity
+    const existingDataString = JSON.stringify(existingDocument.stats);
+    const newDataString = JSON.stringify(statsDocument.stats);
+    doUpdate = existingDataString !== newDataString;
+  }
+
+  // Update the document if there are differences
+  if (doUpdate) {
+    const update = { $set: statsDocument };
+    const options = { upsert: true };
+    const result = await collection.updateOne(filter, update, options);
+    
+    if (result.upsertedCount > 0) {
+      console.log(`A new document was inserted with the _id: ${result.upsertedId._id}`);
+    } else if (result.modifiedCount > 0) {
+      console.log(`Document updated successfully because of data differences.`);
+    } else {
+      console.log(`Document found but no data differences, so no update performed.`);
+    }
+  } else {
+    console.log(`No changes detected, so no update or insert performed.`);
+  }
+} finally {
+  await client.close();
+}
+}
+
+// Execute the scraping and storing process for each league/site
+(async () => {
+for (const config of leagueConfigs) {
+  try {
+    await scrapeAndStoreData(config);
+  } catch (error) {
+    console.error(`Error processing ${config.url}:`, error);
+  }
+}
+})();
+
