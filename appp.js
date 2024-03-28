@@ -941,3 +941,15 @@ app.get('/api/leagues/topscorers/', async (req, res) => {
     }
   });
   
+
+  app.get('/api/compareplayer/topminutesplayed', async (req, res) => {
+    try {
+      const topAssist = await findTopPlayerByField('gameMinutes','Goalkeeper');
+      if (!topAssist) {
+        return res.status(404).json({ message: 'No top assist provider found' });
+      }
+      res.json(topAssist);
+    } catch (error) {
+      res.status(500).json({ message: 'Error fetching top assist provider', error: error.message });
+    }
+  });
