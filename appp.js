@@ -897,19 +897,7 @@ app.get('/api/leagues/topscorers/', async (req, res) => {
   }
 });
 
-  app.get('/api/compareplayer', async (req, res) => {
-    try {
-
-  
-      const players = await findTopScore();
-      res.json(players); 
-      console.log(players);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching players', error: error.message });
-    }
-  });
-  
-  
+ 
   async function findTopScore() {
     try {
       const topScoreDocument = await ComparePlayer.findOne({ gamePosition: 'Attacker' })
@@ -917,8 +905,27 @@ app.get('/api/leagues/topscorers/', async (req, res) => {
         .exec();
   
       console.log("Document with the highest score:", topScoreDocument);
+
+      return topScoreDocument;
     } catch (err) {
       console.error("An error occurred:", err);
+
+      throw err;
     }
   }
+
+  app.get('/api/compareplayer', async (req, res) => {
+    try {
+      const players = await findTopScore();
+
+      if (!players) {
+        return res.status(404).json({ message: 'No players found' });
+      }
+  
+      res.json(players);
+      console.log(players);
+    } catch (error) {
+      res.status(500).json({ message: 'Error fetching players', error: error.message });
+    }
+  });
 
