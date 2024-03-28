@@ -897,35 +897,47 @@ app.get('/api/leagues/topscorers/', async (req, res) => {
   }
 });
 
- 
-  async function findTopScore() {
+   async function findTopPlayerByField(fieldName,position) {
     try {
-      const topScoreDocument = await ComparePlayer.findOne({ gamePosition: 'Attacker' })
-        .sort({ totalGoals: -1 })
+      const query = { gamePosition: position }; 
+            let sortObject = {};
+      sortObject[fieldName] = -1; 
+  
+      const topPlayerDocument = await ComparePlayer.findOne(query)
+        .sort(sortObject)
         .exec();
   
-      console.log("Document with the highest score:", topScoreDocument);
-
-      return topScoreDocument;
+      console.log(`Document with the highest ${fieldName}:`, topPlayerDocument);
+  
+      return topPlayerDocument;
     } catch (err) {
       console.error("An error occurred:", err);
-
       throw err;
     }
   }
-
-  app.get('/api/compareplayer', async (req, res) => {
-    try {
-      const players = await findTopScore();
-
-      if (!players) {
-        return res.status(404).json({ message: 'No players found' });
-      }
   
-      res.json(players);
-      console.log(players);
+  app.get('/api/compareplayer/topscorer', async (req, res) => {
+    try {
+      const topScorer = await findTopPlayerByField('totalGoals','Attacker');
+      if (!topScorer) {
+        return res.status(404).json({ message: 'No top scorer found' });
+      }
+      res.json(topScorer);
     } catch (error) {
-      res.status(500).json({ message: 'Error fetching players', error: error.message });
+      res.status(500).json({ message: 'Error fetching top scorer', error: error.message });
     }
   });
+  
 
+  app.get('/api/compareplayer/topassist', async (req, res) => {
+    try {
+      const topAssist = await findTopPlayerByField('assists','Midfielder');
+      if (!topAssist) {
+        return res.status(404).json({ message: 'No top assist provider found' });
+      }
+      res.json(topAssist);
+    } catch (error) {
+      res.status(500).json({ message: 'Error fetching top assist provider', error: error.message });
+    }
+  });
+  
