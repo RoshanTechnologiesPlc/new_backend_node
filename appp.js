@@ -15,6 +15,7 @@ const allPlayers = require("./models/allPlayer")
 const FixtureEvent = require("./schemas/event_schema")
 // const Player = require("./schemas/fifa_rename")
 const Player = require("./schemas/fifa_model");
+const ComparePlayer = require("./schemas/player_statistics");
 const path = require("path"); 
 const bodyParser = require("body-parser");
 const Matches = require("./schemas/match_schema")
@@ -895,3 +896,29 @@ app.get('/api/leagues/topscorers/', async (req, res) => {
     console.error('Fetching top scorers error:', error);
   }
 });
+
+  app.get('/api/compareplayer', async (req, res) => {
+    try {
+
+  
+      const players = await findTopScore();
+      res.json(players); 
+      console.log(players);
+    } catch (error) {
+      res.status(500).json({ message: 'Error fetching players', error: error.message });
+    }
+  });
+  
+  
+  async function findTopScore() {
+    try {
+      const topScoreDocument = await ComparePlayer.findOne({ gamePosition: 'Attacker' })
+        .sort({ totalGoals: -1 })
+        .exec();
+  
+      console.log("Document with the highest score:", topScoreDocument);
+    } catch (err) {
+      console.error("An error occurred:", err);
+    }
+  }
+
